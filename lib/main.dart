@@ -4,6 +4,7 @@
 // 21900318 Chanyoung Park
 
 import 'package:flutter/material.dart';
+import 'package:moolzal/layout.dart';
 
 void main() {
   runApp(MyApp());
@@ -35,17 +36,9 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('MoolZal'),
+        centerTitle: true,
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'MoolZal',
-            ),
-          ],
-        ),
-      ),
+      body: Layout(),
     );
   }
 }
