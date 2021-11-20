@@ -4,6 +4,7 @@
 // 21900318 Chanyoung Park
 
 import 'package:flutter/material.dart';
+import 'package:moolzal/myprofile.dart';
 
 void main() {
   runApp(MyApp());
@@ -15,9 +16,12 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'MoolZal',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.pink,
       ),
       home: MyHomePage(),
+      routes:{
+        '/profile': (context) => myprofile(),
+      },
     );
   }
 }
@@ -40,8 +44,11 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
-              'MoolZal',
+            RaisedButton(
+                child: const Text('MoolZal'),
+                onPressed:() {
+                  Navigator.pushNamed(context, '/profile');
+                }
             ),
           ],
         ),
