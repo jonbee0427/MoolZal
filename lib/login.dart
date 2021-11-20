@@ -66,7 +66,7 @@ class _LoginPageState extends State<LoginPage> {
         child: ListView(
           padding: const EdgeInsets.symmetric(horizontal: 24.0),
           children: <Widget>[
-            const SizedBox(height: 50.0),
+            const SizedBox(height: 70.0),
             Column(
               children: <Widget>[
                 Container(
