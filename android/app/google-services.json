@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "17973766078",
+    "project_id": "moolzal",
+    "storage_bucket": "moolzal.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:17973766078:android:bdeeefdcc27ee93dbbbbef",
+        "android_client_info": {
+          "package_name": "com.example.moolzal"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "17973766078-c8096f3dq6ds97vm17u1bn38jibomoer.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.moolzal",
+            "certificate_hash": "f571955b180e0253c39c4a3525703e4691a071de"
+          }
+        },
+        {
+          "client_id": "17973766078-s50slieur1n6drh6el6fbt13p381mfda.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAomAlBChDTjuO1piv3B0bXs2sz8hLs0EA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "17973766078-s50slieur1n6drh6el6fbt13p381mfda.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
