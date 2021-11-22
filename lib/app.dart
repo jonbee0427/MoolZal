@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:moolzal/layout.dart';
-import 'package:flutter/services.dart';
+import 'package:moolzal/category.dart';
 
-import 'home.dart';
+// import 'package:moolzal/layout.dart';
+// import 'package:flutter/services.dart';
+
+// import 'home.dart';
 import 'login.dart';
 
 class MoolZalApp extends StatelessWidget {
@@ -10,12 +12,12 @@ class MoolZalApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setEnabledSystemUIOverlays([]);
+    // SystemChrome.setEnabledSystemUIOverlays([]);
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'MoolZal',
-      home: Layout(),
+      home: Category(),
       initialRoute: '/login',
       onGenerateRoute: _getRoute,
       routes: {
