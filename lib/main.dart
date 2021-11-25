@@ -5,6 +5,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:moolzal/myprofile.dart';
+import 'package:moolzal/mycomment.dart';
+import 'package:moolzal/myfavorite.dart';
+import 'package:moolzal/mypost.dart';
+import 'package:moolzal/search.dart';
 
 void main() {
   runApp(MyApp());
@@ -21,6 +25,10 @@ class MyApp extends StatelessWidget {
       home: MyHomePage(),
       routes:{
         '/profile': (context) => myprofile(),
+        '/mycomment': (context) => mycomment(),
+        '/myfavorite': (context) => myfavorite(),
+        '/mypost': (context) => mypost(),
+        '/search': (context) => search(),
       },
     );
   }

@@ -27,6 +27,7 @@ class myprofile extends StatelessWidget {
             onPressed: () {
               //Navigator.pop(context);
               // 서치로 가기?
+              Navigator.pushNamed(context, '/search');
             },
           ),
         ],
@@ -46,28 +47,52 @@ class myprofile extends StatelessWidget {
               child: Text("대충 누구누구 님"),
             ),
             SizedBox(height: MediaQuery.of(context).size.height*0.05),
-            RaisedButton(
-                child: const Text('나의 게시글'),
-                onPressed:() {
-                 //Navigator.pushNamed(context, '/profile');
-                  //나의 게시글 페이지로 가기
-                }
+            SizedBox(
+              width: MediaQuery.of(context).size.width*0.8,
+              child: OutlineButton(
+                child: Text('나의 게시글',style: TextStyle(color: Colors.pink)),
+                borderSide: BorderSide(
+                  color: Colors.pink,
+                  style: BorderStyle.solid,
+                  width: 1.8,
+                ),
+                onPressed: () {
+                  //나의 게시글 각
+                  Navigator.pushNamed(context, '/mypost');
+                },
+              ),
             ),
             SizedBox(height: MediaQuery.of(context).size.height*0.05),
-            RaisedButton(
-                child: const Text('나의 댓글'),
-                onPressed:() {
-                  //Navigator.pushNamed(context, '/profile');
-                  // 나의 댓글 페이지로 보내기
-                }
+            SizedBox(
+              width: MediaQuery.of(context).size.width*0.8,
+              child: OutlineButton(
+                child: Text('나의 댓글',style: TextStyle(color: Colors.pink)),
+                borderSide: BorderSide(
+                  color: Colors.pink,
+                  style: BorderStyle.solid,
+                  width: 1.8,
+                ),
+                onPressed: () {
+                  //나으 댓글로 가기
+                  Navigator.pushNamed(context, '/mycomment');
+                },
+              ),
             ),
             SizedBox(height: MediaQuery.of(context).size.height*0.05),
-            RaisedButton(
-                child: const Text('즐겨찾는 게시글'),
-                onPressed:() {
-                  //Navigator.pushNamed(context, '/profile');
-                  // 나의 즐겨찾는 게시글로 가기
-                }
+            SizedBox(
+              width: MediaQuery.of(context).size.width*0.8,
+              child: OutlineButton(
+                child: Text('즐겨찾는 게시글',style: TextStyle(color: Colors.pink)),
+                borderSide: BorderSide(
+                  color: Colors.pink,
+                  style: BorderStyle.solid,
+                  width: 1.8,
+                ),
+                onPressed: () {
+                  //즐겨찾는 게시글로 가기
+                  Navigator.pushNamed(context, '/myfavorite');
+                },
+              ),
             ),
           ],
         ),
