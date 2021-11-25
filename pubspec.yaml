@@ -27,5 +27,17 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
+    - biology.png
+    - construct.png
+    - counsel.png
+    - csee.png
+    - design.png
+    - economics.png
+    - enterpreneur.png
+    - etc.png
+    - film.png
+    - lang.png
+    - law.png
+    - mechanical.png
     - moolzal.png
     - google.png
