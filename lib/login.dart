@@ -36,7 +36,7 @@ class _LoginPageState extends State<LoginPage> {
     email = FirebaseAuth.instance.currentUser!.email.toString();
 
     FirebaseFirestore.instance
-        .collection('user')
+        .collection('users')
         .doc(authResult.user!.uid)
         .get()
         .then((value) => {
@@ -48,14 +48,13 @@ class _LoginPageState extends State<LoginPage> {
 
   Future<void> addUser() async {
     FirebaseFirestore.instance
-        .collection('user')
+        .collection('users')
         .doc(FirebaseAuth.instance.currentUser!.uid)
         .set({
       'uid': id,
       'name': name,
       'photo': photo,
       'email': email,
-      'liked': false,
     }).then((value) => print("New User: '$name' Added"));
   }
 
