@@ -36,7 +36,7 @@ class _LoginPageState extends State<LoginPage> {
     email = FirebaseAuth.instance.currentUser!.email.toString();
 
     FirebaseFirestore.instance
-        .collection('user')
+        .collection('users')
         .doc(authResult.user!.uid)
         .get()
         .then((value) => {
