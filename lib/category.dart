@@ -58,7 +58,7 @@ class _CategoryState extends State<Category> {
                               color: Colors.lightBlue, // button color
                               child: InkWell(// splash color
                                 onTap: () {
-                                  print("국제어문 button");
+                                  Navigator.pushNamed(context, '/layout');
                                 }, // button pressed
                                 child: Center(
                                   child:
