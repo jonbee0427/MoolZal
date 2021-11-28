@@ -1,7 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-
+import 'package:moolzal/gridforpost.dart';
+import 'package:moolzal/login.dart';
+import 'package:moolzal/listforpost.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -11,7 +13,7 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   int _value = 1;
 
-  Widget itemsOrderbyASC = new StreamBuilder<QuerySnapshot>(
+  Widget gridviewforPost = new StreamBuilder<QuerySnapshot>(
       stream: FirebaseFirestore.instance.collection('posts').snapshots(),
       builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
         if (snapshot.hasError) {
@@ -34,87 +36,54 @@ class _HomeState extends State<Home> {
                 gridDelegate: new SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2),
                 itemBuilder: (BuildContext context, int index) {
-                  return Card(
-                    clipBehavior: Clip.antiAlias,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        // AspectRatio(
-                        //   aspectRatio: 18 / 11,
-                        //   child: Image.network(
-                        //     itemImages[index]['photo'],
-                        //     fit: BoxFit.fill,
-                        //   ),
-                        // ),
-                        Container(
-                          padding: EdgeInsets.fromLTRB(20.0, 5.0, 0.0, 5.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              SizedBox(height: 5.0),
-                              Text(
-                                itemImages[index]['title'],
-                                style: TextStyle(
-                                    fontSize: 15, fontWeight: FontWeight.bold),
-                                maxLines: 2,
-                              ),
-                            ],
-                          ),
-                        ),
-                        Expanded(
-                          child: Container(
-                            padding: EdgeInsets.fromLTRB(20.0, 0.0, 0.0, 5.0),
-                            child: Row(
-                              children: [
-                                Row(
-                                  children: <Widget>[
-                                    Text(
-                                      itemImages[index]['body'],
-                                      style: TextStyle(fontSize: 15),
-                                      maxLines: 2,
-                                      overflow: TextOverflow.ellipsis,
-                                    ),
-                                  ],
-                                ),
-                                // Expanded(
-                                //   child: TextButton(
-                                //     onPressed: () {
-                                //       Navigator.push(
-                                //         context,
-                                //         MaterialPageRoute(
-                                //           builder: (context) =>
-                                //               HomeDetail(
-                                //                 docId: snapshot.data!
-                                //                     .docs[index].id,
-                                //                 uid: itemImages[index]['uid'],
-                                //                 productName: itemImages[index]['productName'],
-                                //                 photo: itemImages[index]['photo'],
-                                //                 price: itemImages[index]['price'],
-                                //                 description: itemImages[index]['description'],
-                                //                 createdTime: itemImages[index]['createdTime'],
-                                //               ),
-                                //         ),
-                                //       );
-                                //     },
-                                //     child: const Text(
-                                //       'more',
-                                //       style: TextStyle(
-                                //           fontSize: 12, color: Colors.blue),
-                                //     ),
-                                //   ),
-                                // ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
+                  return GridTileforPost(
+                    writer: itemImages[index]['writer'],
+                    writer_uid: itemImages[index]['writer_uid'],
+                    title: itemImages[index]['title'],
+                    body: itemImages[index]['body'],
+                    time: itemImages[index]['time'],
                   );
                 });
           }
         }
         return Container(
           child: new Text("No item images found."),
+        );
+      });
+
+  Widget listviewforPost = new StreamBuilder<QuerySnapshot>(
+      stream: FirebaseFirestore.instance.collection('posts').snapshots(),
+      builder: (context, snapshot) {
+        if (snapshot.hasError) {
+          return new Text('Error in receiving trip photos: ${snapshot.error}');
+        }
+
+        var PostsCount = 0;
+        List<DocumentSnapshot> itemImages;
+
+        if (snapshot.hasData) {
+          itemImages = snapshot.data!.docs;
+          PostsCount = itemImages.length;
+
+          if (PostsCount > 0) {
+            return new ListView.builder(
+                itemCount: PostsCount,
+                scrollDirection: Axis.vertical,
+                shrinkWrap: true,
+                primary: false,
+                itemBuilder: (BuildContext context, int index) {
+                  return ListTileforPost(
+                    writer: itemImages[index]['writer'],
+                    writer_uid: itemImages[index]['writer_uid'],
+                    title: itemImages[index]['title'],
+                    body: itemImages[index]['body'],
+                    time: itemImages[index]['time'],
+                  );
+                });
+          }
+        }
+        return Container(
+          child: new Text("No posts found."),
         );
       });
 
@@ -129,9 +98,11 @@ class _HomeState extends State<Home> {
           IconButton(
               onPressed: () {
                 GoogleSignIn().signOut();
-                Navigator.pop(context);
+                Navigator.pushAndRemoveUntil(context, MaterialPageRoute(
+                    builder: (BuildContext context) =>
+                        LoginPage()), (route) => false);
               },
-              icon: Icon(Icons.exit_to_app))
+              icon: Icon(Icons.exit_to_app)),
         ],
       ),
       body: SingleChildScrollView(
@@ -158,7 +129,7 @@ class _HomeState extends State<Home> {
                 },
               ),
             ),
-            _value == 1 ? itemsOrderbyASC : Container(child: Text('nothing'),) ,
+            _value == 1 ? gridviewforPost : listviewforPost ,
           ],
         ),
       ),
