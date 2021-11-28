@@ -3,21 +3,21 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Database {
   final String uid;
+
   Database({required this.uid});
 
   final CollectionReference userCollection =
-  FirebaseFirestore.instance.collection('users');
+      FirebaseFirestore.instance.collection('users');
   final CollectionReference postCollection =
-  FirebaseFirestore.instance.collection('posts');
+      FirebaseFirestore.instance.collection('posts');
+
   //final String uid = FirebaseAuth.instance.currentUser!.uid.toString();
   final String name = FirebaseAuth.instance.currentUser!.displayName.toString();
 
-
-  Future savePost(String title, String body,
-      List<String> path) async {
+  Future savePost(String title, String body, List<String> path) async {
     DocumentReference groupDocRef = await postCollection.add({
       'writer': name,
-      'writer_uid' : uid,
+      'writer_uid': uid,
       'title': title,
       'body': body,
     });
@@ -36,4 +36,32 @@ class Database {
           [groupDocRef.id + '_' + title + '_' + DateTime.now().toString()])
     });
   }
+
+  Future sendMessage(String msg) async {
+    DocumentReference groupDocRef = postCollection.doc(uid);
+    FirebaseFirestore.instance
+        .collection('posts')
+        .doc(uid)
+        .collection('messages')
+        .add({
+      'message': msg,
+      'sender': name,
+      'sentTime': FieldValue.serverTimestamp()
+        });
+  }
+
 }
+
+// sendMessage(String groupId, chatMessageData, String type) {
+//   FirebaseFirestore.instance
+//       .collection('groups')
+//       .doc(groupId)
+//       .collection('messages')
+//       .add(chatMessageData);
+//   FirebaseFirestore.instance.collection('groups').doc(groupId).update({
+//     'recentMessage': chatMessageData['message'],
+//     'recentMessageSender': chatMessageData['sender'],
+//     'recentMessageTime': chatMessageData['time'],
+//     'recentMessageType': chatMessageData['type']
+//   });
+// }

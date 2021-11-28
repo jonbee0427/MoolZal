@@ -53,7 +53,7 @@ class _AddPostState extends State<AddPost> {
                 child: Text('작성 완료'),
                 onPressed: () async {
                   Database(uid: uid).savePost(_titleController.text, _bodyController.text, path);
-                  Navigator.pushNamed(context, '/');
+                  Navigator.pushNamed(context, '/layout');
                   print('post added!');
                 }
               ),

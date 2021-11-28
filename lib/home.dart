@@ -131,7 +131,12 @@ class _HomeState extends State<Home> {
                 GoogleSignIn().signOut();
                 Navigator.pop(context);
               },
-              icon: Icon(Icons.exit_to_app))
+              icon: Icon(Icons.exit_to_app)),
+          IconButton(
+            onPressed: () {
+                Navigator.pushNamed(context, '/chat');
+              },
+              icon: Icon(Icons.message))
         ],
       ),
       body: SingleChildScrollView(
