@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:cached_network_image/cached_network_image.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class myprofile extends StatelessWidget {
   const myprofile({Key? key}) : super(key: key);
 
 
+
+
   @override
   Widget build(BuildContext context) {
+    final user = FirebaseAuth.instance.currentUser;
+    final ProfileImage = user?.photoURL;
+
+
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -39,8 +45,7 @@ class myprofile extends StatelessWidget {
             CircleAvatar(
               radius: 100,
               backgroundColor: Colors.grey,
-              backgroundImage: NetworkImage('https://www.woolha.com/media/2020/03/eevee.png'),
-              //child: Image.network('https://handong.edu/site/handong/res/img/logo.png'),
+              backgroundImage: NetworkImage(ProfileImage!),
             ),
             SizedBox(height: MediaQuery.of(context).size.height*0.05),
             Container(
