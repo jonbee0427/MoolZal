@@ -2,7 +2,9 @@ import 'dart:io';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:moolzal/message.dart';
 
 class Database {
   final String uid;
@@ -12,14 +14,14 @@ class Database {
   final CollectionReference userCollection =
       FirebaseFirestore.instance.collection('users');
   final CollectionReference postCollection =
-  FirebaseFirestore.instance.collection('posts');
+      FirebaseFirestore.instance.collection('posts');
   final String name = FirebaseAuth.instance.currentUser!.displayName.toString();
+  final String photo = FirebaseAuth.instance.currentUser!.photoURL.toString();
 
   Future uploadFile(String title, String path) async {
     String time = DateTime.now().millisecondsSinceEpoch.toString();
-    Reference reference = FirebaseStorage.instance
-        .ref()
-        .child('${name}/' + '${title}/' + time);
+    Reference reference =
+        FirebaseStorage.instance.ref().child('${name}/' + '${title}/' + time);
     UploadTask uploadTask = reference.putFile(File(path));
     TaskSnapshot taskSnapshot = await uploadTask;
     taskSnapshot.ref.getDownloadURL().then((downloadURL) {
@@ -35,13 +37,13 @@ class Database {
   Future savePost(String title, String body,
       List<String> path) async {
     DateTime now = DateTime.now();
-    String formattedDate = DateFormat('yyyy-MM-dd kk:mm').format(now);
+    String formattedDate = DateFormat('yyyy-MM-dd hh:mm').format(now);
     DocumentReference postRef = await postCollection.add({
       'writer': name,
       'writer_uid': uid,
       'title': title,
       'body': body,
-      'time' : formattedDate,
+      'time': formattedDate,
     });
 
     await postRef.update({
@@ -59,31 +61,21 @@ class Database {
     });
   }
 
-  Future sendMessage(String msg) async {
-    DocumentReference groupDocRef = postCollection.doc(uid);
+  Future sendMessage(String title, String msg, String postId) async {
+    DateTime now = DateTime.now();
+    String formattedDate = DateFormat('yyyy-MM-dd hh:mm:ss').format(now);
+
     FirebaseFirestore.instance
         .collection('posts')
-        .doc(uid)
+        .doc(postId)
         .collection('messages')
         .add({
+      'title': title,
       'message': msg,
       'sender': name,
-      'sentTime': FieldValue.serverTimestamp()
-        });
+      'photo': photo,
+      'time': formattedDate
+    });
   }
 
 }
-
-// sendMessage(String groupId, chatMessageData, String type) {
-//   FirebaseFirestore.instance
-//       .collection('groups')
-//       .doc(groupId)
-//       .collection('messages')
-//       .add(chatMessageData);
-//   FirebaseFirestore.instance.collection('groups').doc(groupId).update({
-//     'recentMessage': chatMessageData['message'],
-//     'recentMessageSender': chatMessageData['sender'],
-//     'recentMessageTime': chatMessageData['time'],
-//     'recentMessageType': chatMessageData['type']
-//   });
-// }

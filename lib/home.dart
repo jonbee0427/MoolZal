@@ -105,11 +105,6 @@ class _HomeState extends State<Home> {
                         LoginPage()), (route) => false);
               },
               icon: Icon(Icons.exit_to_app)),
-          IconButton(
-            onPressed: () {
-                Navigator.pushNamed(context, '/chat');
-              },
-              icon: Icon(Icons.message))
         ],
       ),
       body: SingleChildScrollView(

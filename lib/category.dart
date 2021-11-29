@@ -9,6 +9,14 @@ class Category extends StatefulWidget {
 class _CategoryState extends State<Category> {
   String name = FirebaseAuth.instance.currentUser!.displayName.toString();
 
+  getCurrentUser() {name = FirebaseAuth.instance.currentUser!.displayName.toString();}
+
+  @override
+  initState() {
+    super.initState();
+    getCurrentUser();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

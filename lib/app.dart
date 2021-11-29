@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:moolzal/category.dart';
-import 'package:moolzal/chat.dart';
 import 'package:moolzal/layout.dart';
 import 'package:moolzal/myprofile.dart';
 import 'package:moolzal/mycomment.dart';
@@ -30,7 +29,6 @@ class MoolZalApp extends StatelessWidget {
         '/mypost': (context) => mypost(),
         '/search': (context) => search(),
         '/layout': (context) => Layout(),
-        '/chat': (context) => ChatPage(),
       },
       theme: ThemeData(
         primarySwatch: Colors.blue,
