@@ -11,7 +11,7 @@ class myprofile extends StatelessWidget {
   Widget build(BuildContext context) {
     final user = FirebaseAuth.instance.currentUser;
     final ProfileImage = user?.photoURL;
-
+    String name = FirebaseAuth.instance.currentUser!.displayName.toString();
 
     return Scaffold(
       appBar: AppBar(
@@ -49,7 +49,7 @@ class myprofile extends StatelessWidget {
             ),
             SizedBox(height: MediaQuery.of(context).size.height*0.05),
             Container(
-              child: Text("대충 누구누구 님"),
+              child: Text(name),
             ),
             SizedBox(height: MediaQuery.of(context).size.height*0.05),
             SizedBox(
