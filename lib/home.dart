@@ -42,6 +42,7 @@ class _HomeState extends State<Home> {
                     title: itemImages[index]['title'],
                     body: itemImages[index]['body'],
                     time: itemImages[index]['time'],
+                    postId: itemImages[index]['postId']
                   );
                 });
           }
@@ -78,6 +79,7 @@ class _HomeState extends State<Home> {
                     title: itemImages[index]['title'],
                     body: itemImages[index]['body'],
                     time: itemImages[index]['time'],
+                    postId: itemImages[index]['postId']
                   );
                 });
           }
@@ -103,11 +105,6 @@ class _HomeState extends State<Home> {
                         LoginPage()), (route) => false);
               },
               icon: Icon(Icons.exit_to_app)),
-          IconButton(
-            onPressed: () {
-                Navigator.pushNamed(context, '/chat');
-              },
-              icon: Icon(Icons.message))
         ],
       ),
       body: SingleChildScrollView(

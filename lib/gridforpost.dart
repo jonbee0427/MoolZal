@@ -8,6 +8,7 @@ class GridTileforPost extends StatelessWidget {
   final String title;
   final String body;
   final String time;
+  final String postId;
 
   GridTileforPost({
     required this.writer,
@@ -15,6 +16,7 @@ class GridTileforPost extends StatelessWidget {
     required this.title,
     required this.body,
     required this.time,
+    required this.postId
   });
 
   @override
@@ -29,7 +31,8 @@ class GridTileforPost extends StatelessWidget {
                   writer_uid: writer_uid,
                   title: title,
                   body: body,
-                time: time,)));
+                time: time,
+                postId: postId,)));
       },
       child: Card(
         clipBehavior: Clip.antiAlias,

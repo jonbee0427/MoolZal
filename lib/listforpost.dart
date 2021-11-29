@@ -7,6 +7,7 @@ class ListTileforPost extends StatefulWidget {
   final String title;
   final String body;
   final String time;
+  final String postId;
 
   ListTileforPost({
     required this.writer,
@@ -14,6 +15,7 @@ class ListTileforPost extends StatefulWidget {
     required this.title,
     required this.body,
     required this.time,
+    required this.postId,
   });
 
   @override
@@ -33,6 +35,7 @@ class _ListTileforPostState extends State<ListTileforPost> {
                   writer_uid: widget.writer_uid,
                   title: widget.title,
                   body: widget.body,
+                  postId: widget.postId,
                 time: widget.time)));
       },
       child: Column(

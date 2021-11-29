@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:moolzal/chat.dart';
 
 class PostDetail extends StatefulWidget {
   final String writer;
@@ -8,6 +9,7 @@ class PostDetail extends StatefulWidget {
   final String title;
   final String body;
   final String time;
+  final String postId;
 
   PostDetail({
     required this.writer,
@@ -15,6 +17,7 @@ class PostDetail extends StatefulWidget {
     required this.title,
     required this.body,
     required this.time,
+    required this.postId
   });
 
   @override
@@ -62,6 +65,13 @@ class _PostDetailState extends State<PostDetail> {
       appBar: AppBar(
         title: Text('게시글 상세 정보'),
         centerTitle: true,
+        actions: [
+          IconButton(
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => ChatPage(title: widget.title, postId: widget.postId)));
+              },
+              icon: Icon(Icons.message))
+        ],
       ),
       body: ListView(
         children: <Widget>[

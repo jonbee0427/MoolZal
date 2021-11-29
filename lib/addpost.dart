@@ -164,24 +164,6 @@ class _AddPostState extends State<AddPost> {
                 ),
               ],
             ),
-            TextField(
-              decoration: InputDecoration(
-                border: UnderlineInputBorder(),
-                labelText: '내용',
-              ),
-              controller: _bodyController,
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 50),
-              child: TextButton(
-                child: Text('작성 완료'),
-                onPressed: () async {
-                  Database(uid: uid).savePost(_titleController.text, _bodyController.text, path);
-                  Navigator.pushNamed(context, '/layout');
-                  print('post added!');
-                }
-              ),
-            )
           ],
         ),
       ),
