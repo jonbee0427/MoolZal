@@ -11,7 +11,7 @@ class myprofile extends StatelessWidget {
   Widget build(BuildContext context) {
     final user = FirebaseAuth.instance.currentUser;
     final ProfileImage = user?.photoURL;
-
+    String name = FirebaseAuth.instance.currentUser!.displayName.toString();
 
     return Scaffold(
       appBar: AppBar(
@@ -20,7 +20,7 @@ class myprofile extends StatelessWidget {
             Icons.arrow_back,
           ),
           onPressed: () {
-            Navigator.pop(context);
+            Navigator.pushNamed(context, '/layout');
           },
         ),
         title: Text('My Profile'),
@@ -49,15 +49,15 @@ class myprofile extends StatelessWidget {
             ),
             SizedBox(height: MediaQuery.of(context).size.height*0.05),
             Container(
-              child: Text("대충 누구누구 님"),
+              child: Text(name),
             ),
             SizedBox(height: MediaQuery.of(context).size.height*0.05),
             SizedBox(
               width: MediaQuery.of(context).size.width*0.8,
               child: OutlineButton(
-                child: Text('나의 게시글',style: TextStyle(color: Colors.pink)),
+                child: Text('나의 게시글',style: TextStyle(color: Colors.grey)),
                 borderSide: BorderSide(
-                  color: Colors.pink,
+                  color: Colors.grey,
                   style: BorderStyle.solid,
                   width: 1.8,
                 ),
@@ -71,9 +71,9 @@ class myprofile extends StatelessWidget {
             SizedBox(
               width: MediaQuery.of(context).size.width*0.8,
               child: OutlineButton(
-                child: Text('나의 댓글',style: TextStyle(color: Colors.pink)),
+                child: Text('나의 댓글',style: TextStyle(color: Colors.grey)),
                 borderSide: BorderSide(
-                  color: Colors.pink,
+                  color: Colors.grey,
                   style: BorderStyle.solid,
                   width: 1.8,
                 ),
@@ -87,9 +87,9 @@ class myprofile extends StatelessWidget {
             SizedBox(
               width: MediaQuery.of(context).size.width*0.8,
               child: OutlineButton(
-                child: Text('즐겨찾는 게시글',style: TextStyle(color: Colors.pink)),
+                child: Text('즐겨찾는 게시글',style: TextStyle(color: Colors.grey)),
                 borderSide: BorderSide(
-                  color: Colors.pink,
+                  color: Colors.grey,
                   style: BorderStyle.solid,
                   width: 1.8,
                 ),

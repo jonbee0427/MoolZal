@@ -15,6 +15,8 @@ class mypost extends StatelessWidget {
    final String fnDatetime = "datetime";
    final String fnUid = 'writer_uid';
    final String check = "0";
+   final String fnTime = "time";
+   final String fnWriter = "writer";
 
 
   @override
@@ -87,7 +89,7 @@ class mypost extends StatelessWidget {
                                       ),
                                       Text(
                                         //데이터 베이스에 게시글이 작성된 시간을 받아서 넣을것
-                                        "11월28일 (임시)",
+                                        document[fnTime],
                                         style:
                                         TextStyle(color: Colors.grey[600]),
                                       ),
