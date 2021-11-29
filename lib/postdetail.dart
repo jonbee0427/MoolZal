@@ -1,6 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:moolzal/update.dart';
 
 class PostDetail extends StatefulWidget {
   final String writer;
@@ -8,6 +10,7 @@ class PostDetail extends StatefulWidget {
   final String title;
   final String body;
   final String time;
+  final String postId;
 
   PostDetail({
     required this.writer,
@@ -15,6 +18,7 @@ class PostDetail extends StatefulWidget {
     required this.title,
     required this.body,
     required this.time,
+    required this.postId,
   });
 
   @override
@@ -54,6 +58,15 @@ class _PostDetailState extends State<PostDetail> {
   getCurrrentUser() {
     currentUser = FirebaseAuth.instance.currentUser;
     currentUid = currentUser!.uid;
+  }
+
+  Future<void> deletePost() {
+    CollectionReference postCollection = FirebaseFirestore.instance.collection('posts');
+    return postCollection
+        .doc(widget.postId)
+        .delete()
+        .then((value) => print("Post deleted!"))
+        .catchError((error) => print("Failed to delete user: $error"));
   }
 
   @override
@@ -191,19 +204,16 @@ class _PostDetailState extends State<PostDetail> {
                           ),
                           onPressed: () {
                             print('Post updated!');
-                            // Navigator.of(context).push(MaterialPageRoute(
-                            //     builder: (context) => EditPage(
-                            //       title: widget.title,
-                            //       category: widget.category,
-                            //       time_limit: widget.time_limit,
-                            //       body: widget.body,
-                            //       create_time: widget.create_time,
-                            //       max_person: widget.max_person,
-                            //       groupId: widget.groupId,
-                            //       groupName: widget.groupName,
-                            //       userName: widget.userName,
-                            //     ))
-                            // );
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => UpdatePost(
+                                writer: widget.writer,
+                                writer_uid: widget.writer_uid,
+                                title: widget.title,
+                                body: widget.body,
+                                time: widget.time,
+                                postId: widget.postId,
+                                ))
+                            );
                           }),
                     ),
                     SizedBox(width: 20,),
@@ -218,20 +228,9 @@ class _PostDetailState extends State<PostDetail> {
                             side: BorderSide(width: 2.0, color: Colors.grey),
                           ),
                           onPressed: () {
+                            deletePost();
+                            Navigator.pop(context);
                             print('Post deleted!');
-                            // Navigator.of(context).push(MaterialPageRoute(
-                            //     builder: (context) => EditPage(
-                            //       title: widget.title,
-                            //       category: widget.category,
-                            //       time_limit: widget.time_limit,
-                            //       body: widget.body,
-                            //       create_time: widget.create_time,
-                            //       max_person: widget.max_person,
-                            //       groupId: widget.groupId,
-                            //       groupName: widget.groupName,
-                            //       userName: widget.userName,
-                            //     ))
-                            // );
                           }),
                     ),
                   ],

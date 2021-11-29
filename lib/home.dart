@@ -42,6 +42,7 @@ class _HomeState extends State<Home> {
                     title: itemImages[index]['title'],
                     body: itemImages[index]['body'],
                     time: itemImages[index]['time'],
+                    postId: itemImages[index]['postId'],
                   );
                 });
           }
@@ -78,6 +79,7 @@ class _HomeState extends State<Home> {
                     title: itemImages[index]['title'],
                     body: itemImages[index]['body'],
                     time: itemImages[index]['time'],
+                    postId: itemImages[index]['postId'],
                   );
                 });
           }
@@ -119,11 +121,11 @@ class _HomeState extends State<Home> {
                 value: _value,
                 items: [
                   DropdownMenuItem(
-                    child: Text("Grid"),
+                    child: Text("List"),
                     value: 1,
                   ),
                   DropdownMenuItem(
-                    child: Text("List"),
+                    child: Text("Grid"),
                     value: 2,
                   )
                 ],
@@ -134,7 +136,7 @@ class _HomeState extends State<Home> {
                 },
               ),
             ),
-            _value == 1 ? gridviewforPost : listviewforPost ,
+            _value == 1 ? listviewforPost : gridviewforPost,
           ],
         ),
       ),

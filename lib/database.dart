@@ -32,8 +32,6 @@ class Database {
     });
   }
 
-
-
   Future savePost(String title, String body,
       List<String> path) async {
     DateTime now = DateTime.now();
@@ -48,7 +46,7 @@ class Database {
 
     await postRef.update({
       'members': FieldValue.arrayUnion([uid + '_' + name]),
-      'groupId': postRef.id,
+      'postId': postRef.id,
     });
     for (String p in path) {
       print(postRef.id);

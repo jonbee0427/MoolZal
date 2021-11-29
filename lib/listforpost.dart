@@ -1,3 +1,4 @@
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:moolzal/postdetail.dart';
 
@@ -7,6 +8,7 @@ class ListTileforPost extends StatefulWidget {
   final String title;
   final String body;
   final String time;
+  final String postId;
 
   ListTileforPost({
     required this.writer,
@@ -14,6 +16,7 @@ class ListTileforPost extends StatefulWidget {
     required this.title,
     required this.body,
     required this.time,
+    required this.postId,
   });
 
   @override
@@ -22,18 +25,44 @@ class ListTileforPost extends StatefulWidget {
 
 class _ListTileforPostState extends State<ListTileforPost> {
   @override
+  initState() {
+    imageFromStorage();
+    super.initState();
+  }
+
+  List<dynamic> images = [];
+
+  imageFromStorage() {
+    String path = '${widget.writer}/' + '${widget.title}/';
+    Reference storage = FirebaseStorage.instance.ref().child(path);
+    print('Current post : ' + path);
+    storage.listAll().then((value) {
+      value.items.forEach((element) {
+        element.getDownloadURL().then((value) {
+          print('Current value  : ' + value);
+          setState(() {
+            images.add(value);
+          });
+        });
+      });
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
         Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (context) => PostDetail(
-                  writer: widget.writer,
-                  writer_uid: widget.writer_uid,
-                  title: widget.title,
-                  body: widget.body,
-                time: widget.time)));
+                builder: (context) =>
+                    PostDetail(
+                      writer: widget.writer,
+                      writer_uid: widget.writer_uid,
+                      title: widget.title,
+                      body: widget.body,
+                      time: widget.time,
+                      postId: widget.postId,)));
       },
       child: Column(
         children: [
@@ -52,39 +81,71 @@ class _ListTileforPostState extends State<ListTileforPost> {
                               child: Container(
                                 constraints: BoxConstraints(
                                     maxWidth:
-                                        MediaQuery.of(context).size.width * 0.6),
-                                child: Text(
-                                  widget.title,
-                                  style: TextStyle(
-                                      fontSize: 18, fontWeight: FontWeight.bold),
-                                  overflow: TextOverflow.ellipsis,
+                                    MediaQuery
+                                        .of(context)
+                                        .size
+                                        .width *
+                                        0.6),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      widget.title,
+                                      style: TextStyle(
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.bold),
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                    Text(
+                                      widget.body,
+                                      style:
+                                      TextStyle(
+                                          color: Colors.grey, fontSize: 14),
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                    Text(widget.time, style:
+                                    TextStyle(
+                                        color: Colors.grey, fontSize: 14),),
+                                  ],
                                 ),
                               ),
                             ),
-                            Expanded(child: Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                Container(
-                                  child: Text(widget.time),
-                                )
-                              ],
-                            )),
+                            images[0] != null ?
+                            Expanded(
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  Container(
+                                    margin: EdgeInsets.only(right: 10),
+                                    height: 50,
+                                    width: 50,
+                                    decoration: BoxDecoration(
+                                      // borderRadius:
+                                      // BorderRadius.all(Radius.circular(10.0)),
+                                      //border: Border.all(color: Colors.grey),
+                                        image: DecorationImage(
+                                            image: NetworkImage(images[0]))),
+                                  )
+                                ],
+                              ),
+                            ) : Container(),
+                            // Expanded(
+                            //   child: Row(
+                            //     mainAxisAlignment: MainAxisAlignment.end,
+                            //     children: [
+                            //       Container(
+                            //         child: Text(widget.time, ),
+                            //       )
+                            //     ],
+                            //   ),
+                            // ),
                           ],
                         ),
-                        Container(
-                          child: Container(
-                            constraints: BoxConstraints(
-                                maxWidth:
-                                    MediaQuery.of(context).size.width * 0.6),
-                            child: Text(
-                              widget.body,
-                              style:
-                                  TextStyle(color: Colors.grey, fontSize: 14),
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                          ),
+
+                        Divider(
+                          thickness: 1,
+                          color: Colors.grey,
                         ),
-                        Divider( thickness: 1, color: Colors.grey, ),
                       ],
                     ),
                   ),
