@@ -92,7 +92,7 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 onPressed: () {
                   signInWithGoogle();
-                  Navigator.pushNamed(context, '/layout');
+                  Navigator.pushNamed(context, '/category');
                 },
                 label: Text('GOOGLE LOGIN'),
               ),

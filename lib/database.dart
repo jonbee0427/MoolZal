@@ -34,16 +34,34 @@ class Database {
     });
   }
 
-  Future savePost(String title, String body,
-      List<String> path) async {
+  Future<void> getDownloadURL(String title) async {
+    List<String> images = [];
+    String ? url;
+    String path = '${name}/' + '${title}/';
+    Reference storage = FirebaseStorage.instance.ref().child(path);
+    print('Current post : ' + path);
+    storage.listAll().then((value) {
+      value.items.forEach((element) {
+        element.getDownloadURL().then((value) {
+          print('Current value  : ' + value);
+          url = value;
+        });
+      });
+    });
+    print('download URL : ');
+    print(url);
+  }
+
+  Future savePost(String title, String body, List<String> path) async {
     DateTime now = DateTime.now();
-    String formattedDate = DateFormat('yyyy-MM-dd hh:mm').format(now);
+    String formattedDate = DateFormat('yyyy-MM-dd HH:mm').format(now);
     DocumentReference postRef = await postCollection.add({
       'writer': name,
       'writer_uid': uid,
       'title': title,
       'body': body,
       'time': formattedDate,
+      //'photoURL' : path[0],
     });
 
     await postRef.update({
@@ -63,7 +81,7 @@ class Database {
 
   Future sendMessage(String title, String msg, String postId) async {
     DateTime now = DateTime.now();
-    String formattedDate = DateFormat('yyyy-MM-dd hh:mm:ss').format(now);
+    String formattedDate = DateFormat('yyyy-MM-dd HH:mm:ss').format(now);
 
     FirebaseFirestore.instance
         .collection('posts')
@@ -77,5 +95,4 @@ class Database {
       'time': formattedDate
     });
   }
-
 }

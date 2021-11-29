@@ -25,6 +25,7 @@ class MoolZalApp extends StatelessWidget {
       onGenerateRoute: _getRoute,
       routes: {
         '/login': (context) => const LoginPage(),
+        '/category': (context) => Category(),
         '/profile': (context) => myprofile(),
         '/mycomment': (context) => mycomment(),
         '/myfavorite': (context) => myfavorite(),

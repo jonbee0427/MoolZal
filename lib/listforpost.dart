@@ -110,25 +110,25 @@ class _ListTileforPostState extends State<ListTileforPost> {
                                 ),
                               ),
                             ),
-                            images[0] != null ?
-                            Expanded(
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: [
-                                  Container(
-                                    margin: EdgeInsets.only(right: 10),
-                                    height: 50,
-                                    width: 50,
-                                    decoration: BoxDecoration(
-                                      // borderRadius:
-                                      // BorderRadius.all(Radius.circular(10.0)),
-                                      //border: Border.all(color: Colors.grey),
-                                        image: DecorationImage(
-                                            image: NetworkImage(images[0]))),
-                                  )
-                                ],
-                              ),
-                            ) : Container(),
+                            // images[0] != null ?
+                            // Expanded(
+                            //   child: Row(
+                            //     mainAxisAlignment: MainAxisAlignment.end,
+                            //     children: [
+                            //       Container(
+                            //         margin: EdgeInsets.only(right: 10),
+                            //         height: 50,
+                            //         width: 50,
+                            //         decoration: BoxDecoration(
+                            //           // borderRadius:
+                            //           // BorderRadius.all(Radius.circular(10.0)),
+                            //           //border: Border.all(color: Colors.grey),
+                            //             image: DecorationImage(
+                            //                 image: NetworkImage(images[0]))),
+                            //       )
+                            //     ],
+                            //   ),
+                            // ) : Container(),
                             // Expanded(
                             //   child: Row(
                             //     mainAxisAlignment: MainAxisAlignment.end,
