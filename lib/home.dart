@@ -66,8 +66,8 @@ class _HomeState extends State<Home> {
           itemImages = snapshot.data!.docs;
           PostsCount = itemImages.length;
 
-        if (!snapshot.hasData)
-          return Center(child: Text("Loading..."));
+          if (!snapshot.hasData)
+            return Center(child: Text("Loading..."));
 
           if  (PostsCount > 0) {
             return new ListView.builder(

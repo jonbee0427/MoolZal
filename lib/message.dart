@@ -32,7 +32,7 @@ class MessageTile extends StatelessWidget {
     final date1 = DateFormat('yyyy-MM-dd').format(currentTime);
     final date2 = DateFormat('yyyy-MM-dd').format(sentTime);
 
-    final form = new DateFormat().add_jm();
+    final form = new DateFormat().add_yMd().add_jm();
 
     return Column(
       children: [

@@ -53,7 +53,7 @@ class _ChatPageState extends State<ChatPage> {
 
             if (messageNum > 0) {
               return ListView.builder(
-                  padding: EdgeInsets.only(bottom: 10),
+                  padding: EdgeInsets.only(bottom: 80),
                   reverse: false,
                   controller: scrollController,
                   itemCount: messageNum,
@@ -84,82 +84,87 @@ class _ChatPageState extends State<ChatPage> {
         // decoration: BoxDecoration(border: Border.all(color: Colors.black)),
         child: Stack(children: <Widget>[
             readMessage(widget.postId),
-            // Container(
-            //   alignment: Alignment.bottomCenter,
-            //   width: MediaQuery.of(context).size.width,
-            //   decoration: BoxDecoration(border: Border.all(color: Colors.blue)),
-            //   child: Row(
-            //       children: [
-            //         Expanded(
-            //           child: TextFormField(
-            //             controller: _controller,
-            //             decoration: const InputDecoration(
-            //               hintText: '메세지를 입력하세요',
-            //             ),
-            //             validator: (value) {
-            //               if (value == null || value.isEmpty) {
-            //                 return 'Enter your message to continue';
-            //               }
-            //               return null;
-            //             },
-            //           ),
-            //         ),
-            //         const SizedBox(width: 8),
-            //         IconButton(
-            //             onPressed: () {
-            //               Database(uid: uid).sendMessage(
-            //                   widget.title, _controller.text, widget.postId);
-            //               _controller.clear();
-            //               Timer(
-            //                   Duration(milliseconds: 100),
-            //                   () => scrollController.jumpTo(
-            //                       scrollController.position.maxScrollExtent));
-            //             },
-            //             icon: Icon(Icons.send))
-            //       ],
-            //
-            //   ),
-            // )
-        ]),
-      ),
-      bottomNavigationBar: BottomAppBar(
-        color: Colors.transparent,
-        child: Container(
-          padding: EdgeInsets.all(5.0),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              Expanded(
-                child: TextFormField(
-                  controller: _controller,
-                  decoration: const InputDecoration(
-                    hintText: '메세지를 입력하세요',
-                  ),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Enter your message to continue';
-                    }
-                    return null;
-                  },
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: Container(
+                decoration: BoxDecoration(
+                  border: Border.all(width: 1, color: Colors.black),
+                  color: Colors.white,
+                ),
+                padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 10.0),
+                child: Row(
+                    children: [
+                      Expanded(
+                        child: TextFormField(
+                          controller: _controller,
+                          decoration: const InputDecoration(
+                            hintText: '메세지를 입력하세요',
+                          ),
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Enter your message to continue';
+                            }
+                            return null;
+                          },
+                        ),
+                      ),
+                      const SizedBox(width: 8),
+                      IconButton(
+                          onPressed: () {
+                            Database(uid: uid).sendMessage(
+                                widget.title, _controller.text, widget.postId);
+                            _controller.clear();
+                            Timer(
+                                Duration(milliseconds: 100),
+                                () => scrollController.jumpTo(
+                                    scrollController.position.maxScrollExtent));
+                          },
+                          icon: Icon(Icons.send))
+                    ],
+
                 ),
               ),
-              const SizedBox(width: 8),
-              IconButton(
-                  onPressed: () {
-                    Database(uid: uid).sendMessage(
-                        widget.title, _controller.text, widget.postId);
-                    _controller.clear();
-                    Timer(
-                        Duration(milliseconds: 100),
-                        () => scrollController
-                            .jumpTo(scrollController.position.maxScrollExtent));
-                  },
-                  icon: Icon(Icons.send))
-            ],
-          ),
-        ),
-        elevation: 0,
+            )
+        ]),
       ),
+      // bottomNavigationBar: BottomAppBar(
+      //   color: Colors.transparent,
+      //   child: Container(
+      //     padding: EdgeInsets.all(5.0),
+      //     child: Row(
+      //       crossAxisAlignment: CrossAxisAlignment.end,
+      //       children: [
+      //         Expanded(
+      //           child: TextFormField(
+      //             controller: _controller,
+      //             decoration: const InputDecoration(
+      //               hintText: '메세지를 입력하세요',
+      //             ),
+      //             validator: (value) {
+      //               if (value == null || value.isEmpty) {
+      //                 return 'Enter your message to continue';
+      //               }
+      //               return null;
+      //             },
+      //           ),
+      //         ),
+      //         const SizedBox(width: 8),
+      //         IconButton(
+      //             onPressed: () {
+      //               Database(uid: uid).sendMessage(
+      //                   widget.title, _controller.text, widget.postId);
+      //               _controller.clear();
+      //               Timer(
+      //                   Duration(milliseconds: 100),
+      //                   () => scrollController
+      //                       .jumpTo(scrollController.position.maxScrollExtent));
+      //             },
+      //             icon: Icon(Icons.send))
+      //       ],
+      //     ),
+      //   ),
+      //   elevation: 0,
+      // ),
     );
   }
 }
