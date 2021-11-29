@@ -37,7 +37,7 @@ class Database {
   Future savePost(String title, String body,
       List<String> path) async {
     DateTime now = DateTime.now();
-    String formattedDate = DateFormat('yyyy-MM-dd hh:mm').format(now);
+    String formattedDate = DateFormat('yyyy-MM-dd HH:mm').format(now);
     DocumentReference postRef = await postCollection.add({
       'writer': name,
       'writer_uid': uid,
@@ -63,7 +63,7 @@ class Database {
 
   Future sendMessage(String title, String msg, String postId) async {
     DateTime now = DateTime.now();
-    String formattedDate = DateFormat('yyyy-MM-dd hh:mm:ss').format(now);
+    String formattedDate = DateFormat('yyyy-MM-dd HH:mm:ss').format(now);
 
     FirebaseFirestore.instance
         .collection('posts')
