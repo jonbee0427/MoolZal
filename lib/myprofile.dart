@@ -43,19 +43,19 @@ class myprofile extends StatelessWidget {
           children: <Widget>[
             SizedBox(height: MediaQuery.of(context).size.height*0.05),
             CircleAvatar(
-              radius: 100,
+              radius: 80,
               backgroundColor: Colors.grey,
               backgroundImage: NetworkImage(ProfileImage!),
             ),
             SizedBox(height: MediaQuery.of(context).size.height*0.05),
             Container(
-              child: Text(name),
+              child: Text(name, style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 20)),
             ),
             SizedBox(height: MediaQuery.of(context).size.height*0.05),
             SizedBox(
               width: MediaQuery.of(context).size.width*0.8,
               child: OutlineButton(
-                child: Text('나의 게시글',style: TextStyle(color: Colors.grey)),
+                child: Text('나의 게시글',style: TextStyle(color: Colors.black)),
                 borderSide: BorderSide(
                   color: Colors.grey,
                   style: BorderStyle.solid,
@@ -71,7 +71,7 @@ class myprofile extends StatelessWidget {
             SizedBox(
               width: MediaQuery.of(context).size.width*0.8,
               child: OutlineButton(
-                child: Text('나의 댓글',style: TextStyle(color: Colors.grey)),
+                child: Text('나의 댓글',style: TextStyle(color: Colors.black)),
                 borderSide: BorderSide(
                   color: Colors.grey,
                   style: BorderStyle.solid,
@@ -87,7 +87,7 @@ class myprofile extends StatelessWidget {
             SizedBox(
               width: MediaQuery.of(context).size.width*0.8,
               child: OutlineButton(
-                child: Text('즐겨찾는 게시글',style: TextStyle(color: Colors.grey)),
+                child: Text('즐겨찾는 게시글',style: TextStyle(color: Colors.black)),
                 borderSide: BorderSide(
                   color: Colors.grey,
                   style: BorderStyle.solid,

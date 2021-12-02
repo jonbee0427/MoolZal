@@ -13,96 +13,84 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   int _value = 1;
 
-  @override
-  void initState() {
-    super.initState();
-  }
+  Widget gridviewforPost = new StreamBuilder<QuerySnapshot>(
+      stream: FirebaseFirestore.instance.collection('posts').snapshots(),
+      builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+        if (snapshot.hasError) {
+          return new Text('Error in receiving trip photos: ${snapshot.error}');
+        }
 
-  Widget gridviewforPost() {
-    return StreamBuilder<QuerySnapshot>(
-        stream: FirebaseFirestore.instance.collection('posts').snapshots(),
-        builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-          var ImagesCount = 0;
-          List<DocumentSnapshot> itemImages;
+        var ImagesCount = 0;
+        List<DocumentSnapshot> itemImages;
 
-          if (snapshot.hasError) {
-            return new Text(
-                'Error in receiving trip photos: ${snapshot.error}');
-          }
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Text("Loading");
-          }
-          if (snapshot.hasData) {
-            itemImages = snapshot.data!.docs;
-            ImagesCount = itemImages.length;
+        if (snapshot.hasData) {
+          itemImages = snapshot.data!.docs;
+          ImagesCount = itemImages.length;
 
-            if (itemImages != null && ImagesCount > 0) {
-              return new GridView.builder(
-                  itemCount: ImagesCount,
-                  scrollDirection: Axis.vertical,
-                  shrinkWrap: true,
-                  primary: false,
-                  gridDelegate: new SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2),
-                  itemBuilder: ( context,  index) {
-                    return GridTileforPost(
-                      writer: itemImages[index]['writer'],
-                      writer_uid: itemImages[index]['writer_uid'],
-                      title: itemImages[index]['title'],
-                      body: itemImages[index]['body'],
-                      time: itemImages[index]['time'],
-                      postId: itemImages[index]['postId'],
-                    );
-                  });
-            }
+          if (ImagesCount > 0) {
+            return new GridView.builder(
+                itemCount: ImagesCount,
+                scrollDirection: Axis.vertical,
+                shrinkWrap: true,
+                primary: false,
+                gridDelegate: new SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2),
+                itemBuilder: (BuildContext context, int index) {
+                  return GridTileforPost(
+                    writer: itemImages[index]['writer'],
+                    writer_uid: itemImages[index]['writer_uid'],
+                    title: itemImages[index]['title'],
+                    body: itemImages[index]['body'],
+                    time: itemImages[index]['time'],
+                    postId: itemImages[index]['postId'],
+                  );
+                });
           }
-          return Container(
-            child: new Text("No item images found."),
-          );
-        });
-  }
+        }
+        return Container(
+          child: new Text("No item images found."),
+        );
+      });
 
-  Widget listviewforPost() {
-    return StreamBuilder<QuerySnapshot>(
-        stream: FirebaseFirestore.instance.collection('posts').snapshots(),
-        builder: (context, snapshot) {
-          var PostsCount = 0;
-          List<DocumentSnapshot> itemImages;
+  Widget listviewforPost = new StreamBuilder<QuerySnapshot>(
+      stream: FirebaseFirestore.instance.collection('posts').snapshots(),
+      builder: (context, snapshot) {
+        if (snapshot.hasError) {
+          return new Text('Error in receiving trip photos: ${snapshot.error}');
+        }
 
-          if (snapshot.hasError) {
-            return new Text(
-                'Error in receiving trip photos: ${snapshot.error}');
-          }
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Text("Loading");
-          }
-          if (snapshot.hasData) {
-            itemImages = snapshot.data!.docs;
-            PostsCount = itemImages.length;
+        var PostsCount = 0;
+        List<DocumentSnapshot> itemImages;
 
-            if (itemImages != null && PostsCount > 0) {
-              return new ListView.builder(
-                  itemCount: PostsCount,
-                  scrollDirection: Axis.vertical,
-                  shrinkWrap: true,
-                  primary: false,
-                  itemBuilder: ( context,  index) {
-                    return ListTileforPost(
-                      writer: itemImages[index]['writer'],
-                      writer_uid: itemImages[index]['writer_uid'],
-                      title: itemImages[index]['title'],
-                      body: itemImages[index]['body'],
-                      time: itemImages[index]['time'],
-                      postId: itemImages[index]['postId'],
-                    );
-                  });
-            }
+        if (snapshot.hasData) {
+          itemImages = snapshot.data!.docs;
+          PostsCount = itemImages.length;
+
+          if (!snapshot.hasData)
+            return Center(child: Text("Loading..."));
+
+          if  (PostsCount > 0) {
+            return new ListView.builder(
+                itemCount: PostsCount,
+                scrollDirection: Axis.vertical,
+                shrinkWrap: true,
+                primary: false,
+                itemBuilder: (BuildContext context, int index) {
+                  return ListTileforPost(
+                    writer: itemImages[index]['writer'],
+                    writer_uid: itemImages[index]['writer_uid'],
+                    title: itemImages[index]['title'],
+                    body: itemImages[index]['body'],
+                    time: itemImages[index]['time'],
+                    postId: itemImages[index]['postId'],
+                  );
+                });
           }
-          return Container(
-            child: new Text("No posts found."),
-          );
-        });
-  }
+        }
+        return Container(
+          child: new Text("No posts found."),
+        );
+      });
 
   @override
   Widget build(BuildContext context) {
@@ -123,11 +111,11 @@ class _HomeState extends State<Home> {
         ],
       ),
       body: SingleChildScrollView(
-        child: Column(
+        child : Column(
           children: [
             Container(
               padding: EdgeInsets.all(30),
-              child: DropdownButton(
+              child:DropdownButton(
                 value: _value,
                 items: [
                   DropdownMenuItem(
@@ -146,7 +134,7 @@ class _HomeState extends State<Home> {
                 },
               ),
             ),
-            _value == 1 ? listviewforPost() : gridviewforPost(),
+            _value == 1 ? listviewforPost : gridviewforPost,
           ],
         ),
       ),

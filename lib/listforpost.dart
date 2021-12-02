@@ -30,7 +30,7 @@ class _ListTileforPostState extends State<ListTileforPost> {
     super.initState();
   }
 
-  List<dynamic> images = [];
+  String ? url;
 
   imageFromStorage() {
     String path = '${widget.writer}/' + '${widget.title}/';
@@ -40,9 +40,11 @@ class _ListTileforPostState extends State<ListTileforPost> {
       value.items.forEach((element) {
         element.getDownloadURL().then((value) {
           print('Current value  : ' + value);
-          setState(() {
-            images.add(value);
-          });
+          if(mounted) {
+            setState(() {
+              url = value;
+            });
+          }
         });
       });
     });
@@ -110,7 +112,7 @@ class _ListTileforPostState extends State<ListTileforPost> {
                                 ),
                               ),
                             ),
-                            images[0] != null ?
+                            url != null ?
                             Expanded(
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.end,
@@ -124,7 +126,7 @@ class _ListTileforPostState extends State<ListTileforPost> {
                                       // BorderRadius.all(Radius.circular(10.0)),
                                       //border: Border.all(color: Colors.grey),
                                         image: DecorationImage(
-                                            image: NetworkImage(images[0]))),
+                                            image: NetworkImage(url!))),
                                   )
                                 ],
                               ),
