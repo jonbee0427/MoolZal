@@ -30,19 +30,20 @@ class _GridTileforPostState extends State<GridTileforPost> {
     super.initState();
   }
 
-  List<dynamic> images = [];
+  String ? url;
 
   imageFromStorage() {
     String path = '${widget.writer}/' + '${widget.title}/';
     Reference storage = FirebaseStorage.instance.ref().child(path);
-    print('Current post : ' + path);
     storage.listAll().then((value) {
       value.items.forEach((element) {
         element.getDownloadURL().then((value) {
-          print('Current value  : ' + value);
-          setState(() {
-            images.add(value);
-          });
+          print('Image url  : ' + value);
+          if(mounted) {
+            setState(() {
+              url = value;
+            });
+          }
         });
       });
     });
@@ -101,7 +102,7 @@ class _GridTileforPostState extends State<GridTileforPost> {
             SizedBox(
               height: 20,
             ),
-            images[0] != null
+            url != null
                 ? AspectRatio(
                     aspectRatio: 20 / 10,
                     child: Container(
@@ -113,7 +114,7 @@ class _GridTileforPostState extends State<GridTileforPost> {
                           // BorderRadius.all(Radius.circular(10.0)),
                           //border: Border.all(color: Colors.grey),
                           image:
-                              DecorationImage(image: NetworkImage(images[0]))),
+                              DecorationImage(image: NetworkImage(url!))),
                     ),
                   )
                 : Container(),

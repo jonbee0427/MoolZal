@@ -62,26 +62,24 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: ListView(
           padding: const EdgeInsets.symmetric(horizontal: 24.0),
           children: <Widget>[
-            const SizedBox(height: 70.0),
+            const SizedBox(height: 100.0),
             Column(
               children: <Widget>[
                 Container(
-                    width: 250,
-                    height: 250,
+                    width: 200,
+                    height: 200,
                     child: Image.asset(
                       'moolzal.png',
                       fit: BoxFit.fill,
                     )),
-                const SizedBox(
-                  height: 16.0,
-                ),
               ],
             ),
-            const SizedBox(height: 120.0),
+            const SizedBox(height: 150.0),
             Padding(
               padding: const EdgeInsets.all(70.0),
               child: OutlinedButton.icon(

@@ -150,13 +150,15 @@ class _AddPostState extends State<AddPost> {
                         style: TextStyle(fontSize: 17, color: Colors.black),
                       ),
                       onPressed: () async {
-                        Database(uid: uid)
-                            .getDownloadURL(_titleController.text);
+                        // Database(uid: uid)
+                        //     .getDownloadURL(_titleController.text);
                         Database(uid: uid).savePost(_titleController.text,
                             _bodyController.text, path); //게시글 저장
-                        for (int i = 0; i < images.length; i++) {
-                          Database(uid: uid).uploadFile(
-                              _titleController.text, images[i]); //사진 저장
+                        if (images.length > 0) {
+                          for (int i = 0; i < images.length; i++) {
+                            Database(uid: uid).uploadFile(
+                                _titleController.text, images[i]); //사진 저장
+                          }
                         }
                         Navigator.pushNamed(context, '/layout');
                         print('post added!');

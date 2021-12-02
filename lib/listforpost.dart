@@ -30,7 +30,7 @@ class _ListTileforPostState extends State<ListTileforPost> {
     super.initState();
   }
 
-  List<dynamic> images = [];
+  String ? url;
 
   imageFromStorage() {
     String path = '${widget.writer}/' + '${widget.title}/';
@@ -40,9 +40,11 @@ class _ListTileforPostState extends State<ListTileforPost> {
       value.items.forEach((element) {
         element.getDownloadURL().then((value) {
           print('Current value  : ' + value);
-          setState(() {
-            images.add(value);
-          });
+          if(mounted) {
+            setState(() {
+              url = value;
+            });
+          }
         });
       });
     });
@@ -110,25 +112,25 @@ class _ListTileforPostState extends State<ListTileforPost> {
                                 ),
                               ),
                             ),
-                            // images[0] != null ?
-                            // Expanded(
-                            //   child: Row(
-                            //     mainAxisAlignment: MainAxisAlignment.end,
-                            //     children: [
-                            //       Container(
-                            //         margin: EdgeInsets.only(right: 10),
-                            //         height: 50,
-                            //         width: 50,
-                            //         decoration: BoxDecoration(
-                            //           // borderRadius:
-                            //           // BorderRadius.all(Radius.circular(10.0)),
-                            //           //border: Border.all(color: Colors.grey),
-                            //             image: DecorationImage(
-                            //                 image: NetworkImage(images[0]))),
-                            //       )
-                            //     ],
-                            //   ),
-                            // ) : Container(),
+                            url != null ?
+                            Expanded(
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  Container(
+                                    margin: EdgeInsets.only(right: 10),
+                                    height: 50,
+                                    width: 50,
+                                    decoration: BoxDecoration(
+                                      // borderRadius:
+                                      // BorderRadius.all(Radius.circular(10.0)),
+                                      //border: Border.all(color: Colors.grey),
+                                        image: DecorationImage(
+                                            image: NetworkImage(url!))),
+                                  )
+                                ],
+                              ),
+                            ) : Container(),
                             // Expanded(
                             //   child: Row(
                             //     mainAxisAlignment: MainAxisAlignment.end,

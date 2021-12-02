@@ -35,7 +35,6 @@ class Database {
   }
 
   Future<void> getDownloadURL(String title) async {
-    List<String> images = [];
     String ? url;
     String path = '${name}/' + '${title}/';
     Reference storage = FirebaseStorage.instance.ref().child(path);
@@ -43,7 +42,6 @@ class Database {
     storage.listAll().then((value) {
       value.items.forEach((element) {
         element.getDownloadURL().then((value) {
-          print('Current value  : ' + value);
           url = value;
         });
       });
