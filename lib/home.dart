@@ -114,7 +114,7 @@ class _HomeState extends State<Home> {
         child : Column(
           children: [
             Container(
-              padding: EdgeInsets.all(30),
+              padding: EdgeInsets.all(20),
               child:DropdownButton(
                 value: _value,
                 items: [
@@ -135,6 +135,7 @@ class _HomeState extends State<Home> {
               ),
             ),
             _value == 1 ? listviewforPost : gridviewforPost,
+            SizedBox(height: 20.0,)
           ],
         ),
       ),
