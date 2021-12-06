@@ -76,6 +76,7 @@ class _PostDetailState extends State<PostDetail> {
       appBar: AppBar(
         title: Text('게시글 상세 정보'),
         centerTitle: true,
+        backgroundColor: Colors.deepPurple,
         actions: [
           IconButton(
               onPressed: () {

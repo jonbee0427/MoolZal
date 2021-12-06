@@ -35,6 +35,7 @@ class mypost extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('mypost Page'),
+        backgroundColor: Colors.deepPurple,
         actions: <Widget>[
           IconButton(
             icon: const Icon(

@@ -30,7 +30,7 @@ class _GridTileforPostState extends State<GridTileforPost> {
     super.initState();
   }
 
-  String ? url;
+  String? url;
 
   imageFromStorage() {
     String path = '${widget.writer}/' + '${widget.title}/';
@@ -39,7 +39,7 @@ class _GridTileforPostState extends State<GridTileforPost> {
       value.items.forEach((element) {
         element.getDownloadURL().then((value) {
           print('Image url  : ' + value);
-          if(mounted) {
+          if (mounted) {
             setState(() {
               url = value;
             });
@@ -57,67 +57,61 @@ class _GridTileforPostState extends State<GridTileforPost> {
             context,
             MaterialPageRoute(
                 builder: (context) => PostDetail(
-                      writer: widget.writer,
-                      writer_uid: widget.writer_uid,
-                      title: widget.title,
-                      body: widget.body,
-                      time: widget.time,
-                      postId: widget.postId,
-                    )));
+                  writer: widget.writer,
+                  writer_uid: widget.writer_uid,
+                  title: widget.title,
+                  body: widget.body,
+                  time: widget.time,
+                  postId: widget.postId,
+                )));
       },
       child: Card(
         clipBehavior: Clip.antiAlias,
+        elevation: 5.0,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10),
+        ),
         child: Column(
           children: <Widget>[
-            Container(
-              alignment: Alignment.bottomLeft,
-              //padding: const EdgeInsets.only(top: 50),
-              child: Column(
-                children: <Widget>[
-                  SizedBox(height: 5.0),
-                  Text(
-                    widget.title,
-                    style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
-                    maxLines: 2,
-                  ),
-                  Text(
-                    widget.body,
-                    style: TextStyle(fontSize: 15),
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                ],
-              ),
-            ),
-            Expanded(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Container(
-                   child: Text(widget.time),
-                  )
-                ],
-              ),
-            ),
-            SizedBox(
-              height: 20,
-            ),
             url != null
                 ? AspectRatio(
-                    aspectRatio: 20 / 10,
-                    child: Container(
-                      margin: EdgeInsets.only(right: 10),
-                      height: 50,
-                      width: 50,
-                      decoration: BoxDecoration(
-                          // borderRadius:
-                          // BorderRadius.all(Radius.circular(10.0)),
-                          //border: Border.all(color: Colors.grey),
-                          image:
-                              DecorationImage(image: NetworkImage(url!))),
+                aspectRatio: 16 / 9,
+                child: Image.network(url!, fit: BoxFit.fill))
+                : AspectRatio(
+                aspectRatio: 16 / 9,
+                child: Image.asset("moolzal.png", fit: BoxFit.fill)),
+            Align(
+              alignment: Alignment.topLeft,
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      widget.title,
+                      style:
+                      TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                      maxLines: 1,
                     ),
-                  )
-                : Container(),
+                    Text(
+                      widget.body,
+                      style: TextStyle(fontSize: 15),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Align(
+                alignment: Alignment.centerRight,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    widget.time,
+                    style: TextStyle(fontSize: 12),
+                  ),
+                )),
           ],
         ),
       ),

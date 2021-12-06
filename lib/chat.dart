@@ -78,6 +78,13 @@ class _ChatPageState extends State<ChatPage> {
       appBar: AppBar(
         centerTitle: true,
         title: Text(widget.title),
+        actions: <Widget>[
+          IconButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/voicecall');
+              },
+              icon: Icon(Icons.call)),
+        ],
       ),
       body: Container(
         padding: EdgeInsets.all(5.0),

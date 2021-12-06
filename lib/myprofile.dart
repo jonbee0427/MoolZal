@@ -4,9 +4,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 class myprofile extends StatelessWidget {
   const myprofile({Key? key}) : super(key: key);
 
-
-
-
   @override
   Widget build(BuildContext context) {
     final user = FirebaseAuth.instance.currentUser;
@@ -25,6 +22,7 @@ class myprofile extends StatelessWidget {
         ),
         title: Text('My Profile'),
         centerTitle: true,
+        backgroundColor: Colors.deepPurple,
         actions: <Widget>[
           IconButton(
             icon: const Icon(
@@ -44,7 +42,7 @@ class myprofile extends StatelessWidget {
             SizedBox(height: MediaQuery.of(context).size.height*0.05),
             CircleAvatar(
               radius: 80,
-              backgroundColor: Colors.grey,
+              backgroundColor: Colors.deepPurple,
               backgroundImage: NetworkImage(ProfileImage!),
             ),
             SizedBox(height: MediaQuery.of(context).size.height*0.05),
@@ -57,7 +55,7 @@ class myprofile extends StatelessWidget {
               child: OutlineButton(
                 child: Text('나의 게시글',style: TextStyle(color: Colors.black)),
                 borderSide: BorderSide(
-                  color: Colors.grey,
+                  color: Colors.deepPurple,
                   style: BorderStyle.solid,
                   width: 1.8,
                 ),
@@ -73,7 +71,7 @@ class myprofile extends StatelessWidget {
               child: OutlineButton(
                 child: Text('나의 댓글',style: TextStyle(color: Colors.black)),
                 borderSide: BorderSide(
-                  color: Colors.grey,
+                  color: Colors.deepPurple,
                   style: BorderStyle.solid,
                   width: 1.8,
                 ),
@@ -89,7 +87,7 @@ class myprofile extends StatelessWidget {
               child: OutlineButton(
                 child: Text('즐겨찾는 게시글',style: TextStyle(color: Colors.black)),
                 borderSide: BorderSide(
-                  color: Colors.grey,
+                  color: Colors.deepPurple,
                   style: BorderStyle.solid,
                   width: 1.8,
                 ),

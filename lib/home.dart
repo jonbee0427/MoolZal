@@ -14,7 +14,7 @@ class _HomeState extends State<Home> {
   int _value = 1;
 
   Widget gridviewforPost = new StreamBuilder<QuerySnapshot>(
-      stream: FirebaseFirestore.instance.collection('posts').snapshots(),
+      stream: FirebaseFirestore.instance.collection('posts').orderBy(('time'), descending: true).snapshots(),
       builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
         if (snapshot.hasError) {
           return new Text('Error in receiving trip photos: ${snapshot.error}');
@@ -53,7 +53,7 @@ class _HomeState extends State<Home> {
       });
 
   Widget listviewforPost = new StreamBuilder<QuerySnapshot>(
-      stream: FirebaseFirestore.instance.collection('posts').snapshots(),
+      stream: FirebaseFirestore.instance.collection('posts').orderBy(('time'), descending: true).snapshots(),
       builder: (context, snapshot) {
         if (snapshot.hasError) {
           return new Text('Error in receiving trip photos: ${snapshot.error}');
@@ -99,6 +99,7 @@ class _HomeState extends State<Home> {
         centerTitle: true,
         title: Text('MoolZal'),
         automaticallyImplyLeading: false,
+        backgroundColor: Colors.deepPurple,
         actions: <Widget>[
           IconButton(
               onPressed: () {
@@ -114,7 +115,7 @@ class _HomeState extends State<Home> {
         child : Column(
           children: [
             Container(
-              padding: EdgeInsets.all(30),
+              padding: EdgeInsets.all(20),
               child:DropdownButton(
                 value: _value,
                 items: [
@@ -135,6 +136,7 @@ class _HomeState extends State<Home> {
               ),
             ),
             _value == 1 ? listviewforPost : gridviewforPost,
+            SizedBox(height: 20.0,),
           ],
         ),
       ),
