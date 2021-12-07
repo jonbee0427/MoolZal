@@ -110,8 +110,9 @@ class _mypostState extends State<mypost> {
           },
         ),
         centerTitle: true,
-        title: Text('나의 게시물'),
         automaticallyImplyLeading: false,
+        title: Text('mypost Page'),
+        backgroundColor: Colors.deepPurple,
         actions: <Widget>[
           IconButton(
               onPressed: () {

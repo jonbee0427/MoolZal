@@ -22,6 +22,7 @@ class _LayoutState extends State<Layout> {
           // selectedPage == 3 ||
           // selectedPage == 4
           ? ConvexAppBar(
+        backgroundColor: Colors.deepPurple,
               items: [
                 TabItem(
                   icon: Icons.home,

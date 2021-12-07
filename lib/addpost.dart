@@ -49,6 +49,7 @@ class _AddPostState extends State<AddPost> {
         centerTitle: true,
         title: Text('글 작성'),
         automaticallyImplyLeading: false,
+        backgroundColor: Colors.deepPurple,
       ),
       body: SafeArea(
         child: ListView(
@@ -57,12 +58,21 @@ class _AddPostState extends State<AddPost> {
               children: [
                 Container(
                   padding:
-                  EdgeInsets.symmetric(horizontal: 30.0, vertical: 20.0),
+                      EdgeInsets.symmetric(horizontal: 30.0, vertical: 20.0),
                   child: TextField(
                     cursorColor: Colors.black,
                     decoration: InputDecoration(
-                      border: UnderlineInputBorder(),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(width: 1, color: Colors.deepPurple),
+                      ),
+                      // enabledBorder: OutlineInputBorder(
+                      //   borderSide: BorderSide(width: 1, color: Colors.deepPurple),
+                      // ),
+                      border: UnderlineInputBorder(
+                        borderSide: BorderSide(width: 1, color: Colors.deepPurple),
+                      ),
                       labelText: '제목',
+                      labelStyle: TextStyle(color: Colors.deepPurple),
                     ),
                     controller: _titleController,
                   ),
@@ -75,7 +85,14 @@ class _AddPostState extends State<AddPost> {
                     cursorColor: Colors.black,
                     decoration: InputDecoration(
                       labelText: '내용',
+                      labelStyle: TextStyle(color: Colors.deepPurple),
                       hintText: '내용을 입력하세요.',
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(width: 1, color: Colors.deepPurple),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(width: 1, color: Colors.deepPurple),
+                      ),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(10.0)),
                       ),
@@ -90,11 +107,11 @@ class _AddPostState extends State<AddPost> {
                   padding: EdgeInsets.symmetric(horizontal: 30.0),
                   child: OutlinedButton(
                       style: OutlinedButton.styleFrom(
-                        side: BorderSide(width: 2.0, color: Colors.grey),
+                        side: BorderSide(width: 2.0, color: Colors.deepPurple),
                       ),
                       child: Text('이미지 업로드',
                           style:
-                          TextStyle(color: Colors.black, fontSize: 16.0)),
+                              TextStyle(color: Colors.black, fontSize: 16.0)),
                       onPressed: () {
                         pickImage();
                         print('image uploaded');
@@ -106,33 +123,33 @@ class _AddPostState extends State<AddPost> {
                 SizedBox(
                   child: maxImg != 0
                       ? Container(
-                    padding: EdgeInsets.symmetric(horizontal: 30.0),
-                    width: 250,
-                    height: 200,
-                    child: maxImg != 0
-                        ? Swiper(
-                      key: UniqueKey(),
-                      itemBuilder:
-                          (BuildContext context, int index) {
-                        return Image.file(
-                          File(images[index]),
-                        );
-                      },
-                      itemCount: images.length,
-                      autoplayDisableOnInteraction: true,
-                      pagination: new SwiperPagination(
-                        alignment: Alignment.bottomCenter,
-                        builder: new DotSwiperPaginationBuilder(
-                          color: Colors.grey,
-                          activeColor: Colors.grey,
-                        ),
-                      ),
-                      control: new SwiperControl(
-                        color: Colors.grey,
-                      ),
-                    )
-                        : null,
-                  )
+                          padding: EdgeInsets.symmetric(horizontal: 30.0),
+                          width: 250,
+                          height: 200,
+                          child: maxImg != 0
+                              ? Swiper(
+                                  key: UniqueKey(),
+                                  itemBuilder:
+                                      (BuildContext context, int index) {
+                                    return Image.file(
+                                      File(images[index]),
+                                    );
+                                  },
+                                  itemCount: images.length,
+                                  autoplayDisableOnInteraction: true,
+                                  pagination: new SwiperPagination(
+                                    alignment: Alignment.bottomCenter,
+                                    builder: new DotSwiperPaginationBuilder(
+                                      color: Colors.grey,
+                                      activeColor: Colors.grey,
+                                    ),
+                                  ),
+                                  control: new SwiperControl(
+                                    color: Colors.grey,
+                                  ),
+                                )
+                              : null,
+                        )
                       : null,
                 ),
                 SizedBox(
@@ -140,21 +157,25 @@ class _AddPostState extends State<AddPost> {
                 ),
                 Container(
                   padding:
-                  EdgeInsets.symmetric(horizontal: 30.0, vertical: 30.0),
+                      EdgeInsets.symmetric(horizontal: 30.0, vertical: 30.0),
                   child: OutlinedButton(
                       style: OutlinedButton.styleFrom(
-                        side: BorderSide(width: 2.0, color: Colors.grey),
+                        side: BorderSide(width: 2.0, color: Colors.deepPurple),
                       ),
                       child: Text(
                         '작성 완료',
                         style: TextStyle(fontSize: 17, color: Colors.black),
                       ),
                       onPressed: () async {
+                        // Database(uid: uid)
+                        //     .getDownloadURL(_titleController.text);
                         Database(uid: uid).savePost(_titleController.text,
                             _bodyController.text, path); //게시글 저장
-                        for (int i = 0; i < images.length; i++) {
-                          Database(uid: uid).uploadFile(
-                              _titleController.text, images[i]); //사진 저장
+                        if (images.length > 0) {
+                          for (int i = 0; i < images.length; i++) {
+                            Database(uid: uid).uploadFile(
+                                _titleController.text, images[i]); //사진 저장
+                          }
                         }
                         Navigator.pushNamed(context, '/layout');
                         print('post added!');

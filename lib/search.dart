@@ -43,14 +43,14 @@ class _searchState extends State<search> {
         stream: (name != "" && name != null)
             ? FirebaseFirestore.instance
             .collection('posts')
-            .where("title", isGreaterThanOrEqualTo: name)
+            .where("title")
             .snapshots()
             : FirebaseFirestore.instance.collection("items").snapshots(),
         builder: (context, snapshot) {
           return (snapshot.connectionState == ConnectionState.waiting)
               ? Center(child: CircularProgressIndicator())
               : ListView(
-            children: snapshot.data!.docs
+            children: snapshot.data!.docs.where((a) => a['title'].contains(name))
                 .map((DocumentSnapshot document) {
               //Timestamp ts = document[fnDatetime];
               return Card(

@@ -4,9 +4,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 class myprofile extends StatelessWidget {
   const myprofile({Key? key}) : super(key: key);
 
-
-
-
   @override
   Widget build(BuildContext context) {
     final user = FirebaseAuth.instance.currentUser;
@@ -25,6 +22,7 @@ class myprofile extends StatelessWidget {
         ),
         title: Text('My Profile'),
         centerTitle: true,
+        backgroundColor: Colors.deepPurple,
         actions: <Widget>[
           IconButton(
             icon: const Icon(
@@ -43,21 +41,21 @@ class myprofile extends StatelessWidget {
           children: <Widget>[
             SizedBox(height: MediaQuery.of(context).size.height*0.05),
             CircleAvatar(
-              radius: 100,
-              backgroundColor: Colors.grey,
+              radius: 80,
+              backgroundColor: Colors.deepPurple,
               backgroundImage: NetworkImage(ProfileImage!),
             ),
             SizedBox(height: MediaQuery.of(context).size.height*0.05),
             Container(
-              child: Text(name),
+              child: Text(name, style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 20)),
             ),
             SizedBox(height: MediaQuery.of(context).size.height*0.05),
             SizedBox(
               width: MediaQuery.of(context).size.width*0.8,
               child: OutlineButton(
-                child: Text('나의 게시글',style: TextStyle(color: Colors.grey)),
+                child: Text('나의 게시글',style: TextStyle(color: Colors.black)),
                 borderSide: BorderSide(
-                  color: Colors.grey,
+                  color: Colors.deepPurple,
                   style: BorderStyle.solid,
                   width: 1.8,
                 ),
@@ -71,9 +69,9 @@ class myprofile extends StatelessWidget {
             SizedBox(
               width: MediaQuery.of(context).size.width*0.8,
               child: OutlineButton(
-                child: Text('나의 댓글',style: TextStyle(color: Colors.grey)),
+                child: Text('나의 댓글',style: TextStyle(color: Colors.black)),
                 borderSide: BorderSide(
-                  color: Colors.grey,
+                  color: Colors.deepPurple,
                   style: BorderStyle.solid,
                   width: 1.8,
                 ),
@@ -87,9 +85,9 @@ class myprofile extends StatelessWidget {
             SizedBox(
               width: MediaQuery.of(context).size.width*0.8,
               child: OutlineButton(
-                child: Text('즐겨찾는 게시글',style: TextStyle(color: Colors.grey)),
+                child: Text('즐겨찾는 게시글',style: TextStyle(color: Colors.black)),
                 borderSide: BorderSide(
-                  color: Colors.grey,
+                  color: Colors.deepPurple,
                   style: BorderStyle.solid,
                   width: 1.8,
                 ),

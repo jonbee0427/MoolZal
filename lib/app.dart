@@ -9,6 +9,7 @@ import 'package:moolzal/myfavorite.dart';
 import 'package:moolzal/mypost.dart';
 import 'package:moolzal/search.dart';
 import 'package:moolzal/login.dart';
+import 'package:moolzal/voicecall.dart';
 
 class MoolZalApp extends StatelessWidget {
   const MoolZalApp({Key? key}) : super(key: key);
@@ -25,12 +26,14 @@ class MoolZalApp extends StatelessWidget {
       onGenerateRoute: _getRoute,
       routes: {
         '/login': (context) => const LoginPage(),
+        '/category': (context) => Category(),
         '/profile': (context) => myprofile(),
         '/mycomment': (context) => mycomment(),
         '/myfavorite': (context) => myfavorite(),
         '/mypost': (context) => mypost(),
         '/search': (context) => search(),
         '/layout': (context) => Layout(),
+        '/voicecall': (context) => VoiceCall(),
       },
       theme: ThemeData(
         primarySwatch: Colors.blue,
@@ -80,6 +83,7 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Stack(
           fit: StackFit.expand,
           children:<Widget>[

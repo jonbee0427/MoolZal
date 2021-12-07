@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -62,26 +63,41 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: ListView(
           padding: const EdgeInsets.symmetric(horizontal: 24.0),
           children: <Widget>[
-            const SizedBox(height: 70.0),
+            const SizedBox(height: 100.0),
             Column(
               children: <Widget>[
                 Container(
-                    width: 250,
-                    height: 250,
-                    child: Image.asset(
-                      'moolzal.png',
-                      fit: BoxFit.fill,
-                    )),
-                const SizedBox(
-                  height: 16.0,
+                  width: 200,
+                  height: 200,
+                  child: Image.asset(
+                    'moolzal.png',
+                    fit: BoxFit.fill,
+                  ),
+                ),
+                AnimatedTextKit(
+                  animatedTexts: [
+                    WavyAnimatedText(
+                      '물어보길 잘했다',
+                      textStyle: TextStyle(
+                        fontSize: 20.0,
+                        color: Colors.deepPurple,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                  isRepeatingAnimation: true,
+                  onTap: () {
+                    print("Tap Event");
+                  },
                 ),
               ],
             ),
-            const SizedBox(height: 120.0),
+            const SizedBox(height: 150.0),
             Padding(
               padding: const EdgeInsets.all(70.0),
               child: OutlinedButton.icon(
@@ -92,7 +108,7 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 onPressed: () {
                   signInWithGoogle();
-                  Navigator.pushNamed(context, '/layout');
+                  Navigator.pushNamed(context, '/category');
                 },
                 label: Text('GOOGLE LOGIN'),
               ),
