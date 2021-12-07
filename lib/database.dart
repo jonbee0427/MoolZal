@@ -12,16 +12,16 @@ class Database {
   Database({required this.uid});
 
   final CollectionReference userCollection =
-      FirebaseFirestore.instance.collection('users');
+  FirebaseFirestore.instance.collection('users');
   final CollectionReference postCollection =
-      FirebaseFirestore.instance.collection('posts');
+  FirebaseFirestore.instance.collection('posts');
   final String name = FirebaseAuth.instance.currentUser!.displayName.toString();
   final String photo = FirebaseAuth.instance.currentUser!.photoURL.toString();
 
   Future uploadFile(String title, String path) async {
     String time = DateTime.now().millisecondsSinceEpoch.toString();
     Reference reference =
-        FirebaseStorage.instance.ref().child('${name}/' + '${title}/' + time);
+    FirebaseStorage.instance.ref().child('${name}/' + '${title}/' + time);
     UploadTask uploadTask = reference.putFile(File(path));
     TaskSnapshot taskSnapshot = await uploadTask;
     taskSnapshot.ref.getDownloadURL().then((downloadURL) {
@@ -37,7 +37,7 @@ class Database {
   Future savePost(String title, String body,
       List<String> path) async {
     DateTime now = DateTime.now();
-    String formattedDate = DateFormat('yyyy-MM-dd hh:mm').format(now);
+    String formattedDate = DateFormat('yyyy-MM-dd HH:mm').format(now);
     DocumentReference postRef = await postCollection.add({
       'writer': name,
       'writer_uid': uid,
@@ -63,7 +63,7 @@ class Database {
 
   Future sendMessage(String title, String msg, String postId) async {
     DateTime now = DateTime.now();
-    String formattedDate = DateFormat('yyyy-MM-dd hh:mm:ss').format(now);
+    String formattedDate = DateFormat('yyyy-MM-dd HH:mm:ss').format(now);
 
     FirebaseFirestore.instance
         .collection('posts')

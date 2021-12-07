@@ -1,119 +1,155 @@
-import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:moolzal/gridforpost.dart';
+import 'package:moolzal/login.dart';
+import 'package:moolzal/listforpost.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
+class mypost extends StatefulWidget {
+  @override
+  _mypostState createState() => _mypostState();
+}
 
-class mypost extends StatelessWidget {
-   mypost({Key? key}) : super(key: key);
+class _mypostState extends State<mypost> {
+  int _value = 1;
+  String name = FirebaseAuth.instance.currentUser!.displayName.toString();
 
-   // 컬렉션명
-   final String colName = "posts";
+  Widget gridviewforPost = new StreamBuilder<QuerySnapshot>(
+      stream: FirebaseFirestore.instance
+          .collection('posts')
+          .where("writer", isEqualTo: "박찬영학부생")
+          .snapshots(),
+      builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+        if (snapshot.hasError) {
+          return new Text('Error in receiving trip photos: ${snapshot.error}');
+        }
 
-   // 필드명
-   final String fnTitle = "title";
-   final String fnBody = "body";
-   final String fnDatetime = "datetime";
-   final String fnUid = 'writer_uid';
-   final String check = "0";
-   final String fnTime = "time";
-   final String fnWriter = "writer";
+        var ImagesCount = 0;
+        List<DocumentSnapshot> itemImages;
 
+        if (snapshot.hasData) {
+          itemImages = snapshot.data!.docs;
+          ImagesCount = itemImages.length;
+
+          if (ImagesCount > 0) {
+            return new GridView.builder(
+                itemCount: ImagesCount,
+                scrollDirection: Axis.vertical,
+                shrinkWrap: true,
+                primary: false,
+                gridDelegate: new SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2),
+                itemBuilder: (BuildContext context, int index) {
+                  return GridTileforPost(
+                    writer: itemImages[index]['writer'],
+                    writer_uid: itemImages[index]['writer_uid'],
+                    title: itemImages[index]['title'],
+                    body: itemImages[index]['body'],
+                    time: itemImages[index]['time'],
+                    postId: itemImages[index]['postId'],
+                  );
+                });
+          }
+        }
+        return Container(
+          child: new Text("No item images found."),
+        );
+      });
+
+  Widget listviewforPost = new StreamBuilder<QuerySnapshot>(
+      stream: FirebaseFirestore.instance
+          .collection('posts')
+          .where("writer", isEqualTo: "박찬영학부생")
+          .snapshots(),
+      builder: (context, snapshot) {
+        if (snapshot.hasError) {
+          return new Text('Error in receiving trip photos: ${snapshot.error}');
+        }
+
+        var PostsCount = 0;
+        List<DocumentSnapshot> itemImages;
+
+        if (snapshot.hasData) {
+          itemImages = snapshot.data!.docs;
+          PostsCount = itemImages.length;
+
+          if (PostsCount > 0) {
+            return new ListView.builder(
+                itemCount: PostsCount,
+                scrollDirection: Axis.vertical,
+                shrinkWrap: true,
+                primary: false,
+                itemBuilder: (BuildContext context, int index) {
+                  return ListTileforPost(
+                    writer: itemImages[index]['writer'],
+                    writer_uid: itemImages[index]['writer_uid'],
+                    title: itemImages[index]['title'],
+                    body: itemImages[index]['body'],
+                    time: itemImages[index]['time'],
+                    postId: itemImages[index]['postId'],
+                  );
+                });
+          }
+        }
+        return Container(
+          child: new Text("No posts found."),
+        );
+      });
 
   @override
   Widget build(BuildContext context) {
-    FirebaseAuth.instance
-        .authStateChanges()
-        .listen((User? user) {
-      if (user == null) {
-        print('User is currently signed out!');
-      } else {
-        print('User is signed in!');
-      }
-    });
-    final user = FirebaseAuth.instance.currentUser;
-    final uid = user?.uid;
     return Scaffold(
       appBar: AppBar(
-        title: Text('mypost Page'),
+        leading: IconButton(
+          icon: const Icon(
+            Icons.arrow_back,
+          ),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+        centerTitle: true,
+        title: Text('나의 게시물'),
+        automaticallyImplyLeading: false,
         actions: <Widget>[
           IconButton(
-            icon: const Icon(
-              Icons.search,
-            ),
-            onPressed: () {
-              //Navigator.pop(context);
-              // 서치로 가기?
-              Navigator.pushNamed(context, '/search');
-            },
-          ),
+              onPressed: () {
+                GoogleSignIn().signOut();
+                Navigator.pushAndRemoveUntil(context, MaterialPageRoute(
+                    builder: (BuildContext context) =>
+                        LoginPage()), (route) => false);
+              },
+              icon: Icon(Icons.exit_to_app)),
         ],
       ),
-      body: ListView(
-        children: <Widget>[
-          Container(
-            height: 500,
-            child: StreamBuilder<QuerySnapshot>(
-              stream: FirebaseFirestore.instance
-                  .collection(colName)
-                  .snapshots(),
-              builder: (BuildContext context,
-                  AsyncSnapshot<QuerySnapshot> snapshot) {
-                if (snapshot.hasError) return Text("Error: ${snapshot.error}");
-                switch (snapshot.connectionState) {
-                  case ConnectionState.waiting:
-                    return Text("Loading...");
-                  default:
-                    return ListView(
-                      children: snapshot.data!.docs
-                          .map((DocumentSnapshot document) {
-                        //Timestamp ts = document[fnDatetime];
-                        return Card(
-                          elevation: 2,
-                          child: document[fnUid] == uid ? InkWell(
-                            // Read Document
-                            child:
-                            Container(
-                              padding: const EdgeInsets.all(8),
-                              child: Column(
-                                children: <Widget>[
-                                  Row(
-                                    mainAxisAlignment:MainAxisAlignment.spaceBetween,
-                                    children: <Widget>[
-                                      Text(
-                                        document[fnTitle],
-                                        style: TextStyle(
-                                          color: Colors.blueGrey,
-                                          fontSize: 17,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                      Text(
-                                        //데이터 베이스에 게시글이 작성된 시간을 받아서 넣을것
-                                        document[fnTime],
-                                        style:
-                                        TextStyle(color: Colors.grey[600]),
-                                      ),
-                                    ],
-                                  ),
-                                  Container(
-                                    alignment: Alignment.centerLeft,
-                                    child: Text(
-                                      document[fnBody],
-                                      style: TextStyle(color: Colors.black54),
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ),
-                          ): new Container()
-                        );
-                      }).toList(),
-                    );
-                }
-              },
+      body: SingleChildScrollView(
+        child : Column(
+          children: [
+            Container(
+              padding: EdgeInsets.all(30),
+              child:DropdownButton(
+                value: _value,
+                items: [
+                  DropdownMenuItem(
+                    child: Text("List"),
+                    value: 1,
+                  ),
+                  DropdownMenuItem(
+                    child: Text("Grid"),
+                    value: 2,
+                  )
+                ],
+                onChanged: (int ? value) {
+                  setState(() {
+                    _value = value!;
+                  });
+                },
+              ),
             ),
-          )
-        ],
+            _value == 1 ? listviewforPost : gridviewforPost,
+          ],
+        ),
       ),
     );
   }
