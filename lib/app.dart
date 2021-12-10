@@ -9,6 +9,8 @@ import 'package:moolzal/myfavorite.dart';
 import 'package:moolzal/mypost.dart';
 import 'package:moolzal/search.dart';
 import 'package:moolzal/login.dart';
+import 'package:moolzal/voicecall.dart';
+import 'package:moolzal/chart.dart';
 
 class MoolZalApp extends StatelessWidget {
   const MoolZalApp({Key? key}) : super(key: key);
@@ -32,6 +34,8 @@ class MoolZalApp extends StatelessWidget {
         '/mypost': (context) => mypost(),
         '/search': (context) => search(),
         '/layout': (context) => Layout(),
+        '/voicecall': (context) => VoiceCall(),
+        '/chart': (context) => chart(),
       },
       theme: ThemeData(
         primarySwatch: Colors.blue,

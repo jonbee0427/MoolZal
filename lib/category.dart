@@ -9,7 +9,9 @@ class Category extends StatefulWidget {
 class _CategoryState extends State<Category> {
   String name = FirebaseAuth.instance.currentUser!.displayName.toString();
 
-  getCurrentUser() {name = FirebaseAuth.instance.currentUser!.displayName.toString();}
+  getCurrentUser() {
+    name = FirebaseAuth.instance.currentUser!.displayName.toString();
+  }
 
   @override
   initState() {
@@ -22,7 +24,7 @@ class _CategoryState extends State<Category> {
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.only(top:50.0, left: 20.0),
+          padding: const EdgeInsets.only(top: 50.0, left: 20.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -33,21 +35,38 @@ class _CategoryState extends State<Category> {
                 children: [
                   Text(
                     'Welcome!',
-                    style: TextStyle(color: Colors.deepPurple,fontSize: 30, fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                        color: Colors.deepPurple,
+                        fontSize: 30,
+                        fontWeight: FontWeight.bold),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(right: 30.0),
-                    child: IconButton(onPressed: (){print("Search Button");}, icon: Icon(Icons.search, size: 40,) ),
+                    child: IconButton(
+                        onPressed: () {
+                          print("Search Button");
+                        },
+                        icon: Icon(
+                          Icons.search,
+                          size: 40,
+                        )),
                   ),
-
                 ],
               ),
               SizedBox(height: 10),
-              Text(name, style: TextStyle(fontSize: 20),),
-              SizedBox(height: 50,),
+              Text(
+                name,
+                style: TextStyle(fontSize: 20),
+              ),
+              SizedBox(
+                height: 50,
+              ),
               Text(
                 'Category',
-                style: TextStyle(color: Colors.deepPurple, fontSize: 30, fontWeight: FontWeight.bold),
+                style: TextStyle(
+                    color: Colors.deepPurple,
+                    fontSize: 30,
+                    fontWeight: FontWeight.bold),
               ),
               // Row tile 1
               SizedBox(height: 20),
@@ -76,7 +95,8 @@ class _CategoryState extends State<Category> {
                                       image: AssetImage('lang.png'),
                                       fit: BoxFit.cover,
                                     ),
-                                    borderRadius: BorderRadius.all( Radius.circular(50.0)),
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(50.0)),
                                     border: Border.all(
                                       color: Colors.deepPurple,
                                       width: 4.0,
@@ -87,17 +107,23 @@ class _CategoryState extends State<Category> {
                             ),
                           ),
                         ),
-                        Text("국제어문", style: TextStyle(fontWeight: FontWeight.bold),),
+                        Text(
+                          "국제어문",
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
                       ],
                     ),
-                    SizedBox(width: 25,),
+                    SizedBox(
+                      width: 25,
+                    ),
                     Column(
                       children: [
                         SizedBox.fromSize(
                           size: Size(60, 60), // button width and height
                           child: ClipOval(
                             child: Material(
-                              child: InkWell(// splash color
+                              child: InkWell(
+                                // splash color
                                 onTap: () {
                                   print("경영경제 button");
                                 }, // button pressed
@@ -110,7 +136,8 @@ class _CategoryState extends State<Category> {
                                       image: AssetImage('economics.png'),
                                       fit: BoxFit.cover,
                                     ),
-                                    borderRadius: BorderRadius.all( Radius.circular(50.0)),
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(50.0)),
                                     border: Border.all(
                                       color: Colors.deepPurple,
                                       width: 4.0,
@@ -121,17 +148,23 @@ class _CategoryState extends State<Category> {
                             ),
                           ),
                         ),
-                        Text("경영경제", style: TextStyle(fontWeight: FontWeight.bold),),
+                        Text(
+                          "경영경제",
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
                       ],
                     ),
-                    SizedBox(width: 25,),
+                    SizedBox(
+                      width: 25,
+                    ),
                     Column(
                       children: [
                         SizedBox.fromSize(
                           size: Size(60, 60), // button width and height
                           child: ClipOval(
                             child: Material(
-                              child: InkWell(// splash color
+                              child: InkWell(
+                                // splash color
                                 onTap: () {
                                   print("법 button");
                                 }, // button pressed
@@ -144,7 +177,8 @@ class _CategoryState extends State<Category> {
                                       image: AssetImage('law.png'),
                                       fit: BoxFit.cover,
                                     ),
-                                    borderRadius: BorderRadius.all( Radius.circular(50.0)),
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(50.0)),
                                     border: Border.all(
                                       color: Colors.deepPurple,
                                       width: 4.0,
@@ -155,17 +189,23 @@ class _CategoryState extends State<Category> {
                             ),
                           ),
                         ),
-                        Text("법", style: TextStyle(fontWeight: FontWeight.bold),),
+                        Text(
+                          "법",
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
                       ],
                     ),
-                    SizedBox(width: 25,),
+                    SizedBox(
+                      width: 25,
+                    ),
                     Column(
                       children: [
                         SizedBox.fromSize(
                           size: Size(60, 60), // button width and height
                           child: ClipOval(
                             child: Material(
-                              child: InkWell(// splash color
+                              child: InkWell(
+                                // splash color
                                 onTap: () {
                                   print("공연영상 button");
                                 }, // button pressed
@@ -178,7 +218,8 @@ class _CategoryState extends State<Category> {
                                       image: AssetImage('film.png'),
                                       fit: BoxFit.cover,
                                     ),
-                                    borderRadius: BorderRadius.all( Radius.circular(50.0)),
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(50.0)),
                                     border: Border.all(
                                       color: Colors.deepPurple,
                                       width: 4.0,
@@ -189,10 +230,15 @@ class _CategoryState extends State<Category> {
                             ),
                           ),
                         ),
-                        Text("공연영상", style: TextStyle(fontWeight: FontWeight.bold),),
+                        Text(
+                          "공연영상",
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
                       ],
                     ),
-                    SizedBox(width: 25,),
+                    SizedBox(
+                      width: 25,
+                    ),
                   ],
                 ),
               ),
@@ -210,7 +256,8 @@ class _CategoryState extends State<Category> {
                           size: Size(60, 60), // button width and height
                           child: ClipOval(
                             child: Material(
-                              child: InkWell(// splash color
+                              child: InkWell(
+                                // splash color
                                 onTap: () {
                                   print("공간환경 button");
                                 }, // button pressed
@@ -223,7 +270,8 @@ class _CategoryState extends State<Category> {
                                       image: AssetImage('construct.png'),
                                       fit: BoxFit.cover,
                                     ),
-                                    borderRadius: BorderRadius.all( Radius.circular(50.0)),
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(50.0)),
                                     border: Border.all(
                                       color: Colors.deepPurple,
                                       width: 4.0,
@@ -234,17 +282,23 @@ class _CategoryState extends State<Category> {
                             ),
                           ),
                         ),
-                        Text("공간환경", style: TextStyle(fontWeight: FontWeight.bold),),
+                        Text(
+                          "공간환경",
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
                       ],
                     ),
-                    SizedBox(width: 25,),
+                    SizedBox(
+                      width: 25,
+                    ),
                     Column(
                       children: [
                         SizedBox.fromSize(
                           size: Size(60, 60), // button width and height
                           child: ClipOval(
                             child: Material(
-                              child: InkWell(// splash color
+                              child: InkWell(
+                                // splash color
                                 onTap: () {
                                   print("기계제어 button");
                                 }, // button pressed
@@ -257,7 +311,8 @@ class _CategoryState extends State<Category> {
                                       image: AssetImage('mechanical.png'),
                                       fit: BoxFit.cover,
                                     ),
-                                    borderRadius: BorderRadius.all( Radius.circular(50.0)),
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(50.0)),
                                     border: Border.all(
                                       color: Colors.deepPurple,
                                       width: 4.0,
@@ -268,17 +323,23 @@ class _CategoryState extends State<Category> {
                             ),
                           ),
                         ),
-                        Text("기계제어", style: TextStyle(fontWeight: FontWeight.bold),),
+                        Text(
+                          "기계제어",
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
                       ],
                     ),
-                    SizedBox(width: 25,),
+                    SizedBox(
+                      width: 25,
+                    ),
                     Column(
                       children: [
                         SizedBox.fromSize(
                           size: Size(60, 60), // button width and height
                           child: ClipOval(
                             child: Material(
-                              child: InkWell(// splash color
+                              child: InkWell(
+                                // splash color
                                 onTap: () {
                                   print("디자인 button");
                                 }, // button pressed
@@ -291,7 +352,8 @@ class _CategoryState extends State<Category> {
                                       image: AssetImage('design.png'),
                                       fit: BoxFit.cover,
                                     ),
-                                    borderRadius: BorderRadius.all( Radius.circular(50.0)),
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(50.0)),
                                     border: Border.all(
                                       color: Colors.deepPurple,
                                       width: 4.0,
@@ -302,17 +364,23 @@ class _CategoryState extends State<Category> {
                             ),
                           ),
                         ),
-                        Text("디자인", style: TextStyle(fontWeight: FontWeight.bold),),
+                        Text(
+                          "디자인",
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
                       ],
                     ),
-                    SizedBox(width: 25,),
+                    SizedBox(
+                      width: 25,
+                    ),
                     Column(
                       children: [
                         SizedBox.fromSize(
                           size: Size(60, 60), // button width and height
                           child: ClipOval(
                             child: Material(
-                              child: InkWell(// splash color
+                              child: InkWell(
+                                // splash color
                                 onTap: () {
                                   print("생명과학 button");
                                 }, // button pressed
@@ -325,7 +393,8 @@ class _CategoryState extends State<Category> {
                                       image: AssetImage('biology.png'),
                                       fit: BoxFit.cover,
                                     ),
-                                    borderRadius: BorderRadius.all( Radius.circular(50.0)),
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(50.0)),
                                     border: Border.all(
                                       color: Colors.deepPurple,
                                       width: 4.0,
@@ -336,10 +405,15 @@ class _CategoryState extends State<Category> {
                             ),
                           ),
                         ),
-                        Text("생명과학", style: TextStyle(fontWeight: FontWeight.bold),),
+                        Text(
+                          "생명과학",
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
                       ],
                     ),
-                    SizedBox(width: 25,),
+                    SizedBox(
+                      width: 25,
+                    ),
                   ],
                 ),
               ),
@@ -357,7 +431,8 @@ class _CategoryState extends State<Category> {
                           size: Size(60, 60), // button width and height
                           child: ClipOval(
                             child: Material(
-                              child: InkWell(// splash color
+                              child: InkWell(
+                                // splash color
                                 onTap: () {
                                   print("전산전자 button");
                                 }, // button pressed
@@ -370,7 +445,8 @@ class _CategoryState extends State<Category> {
                                       image: AssetImage('csee.png'),
                                       fit: BoxFit.cover,
                                     ),
-                                    borderRadius: BorderRadius.all( Radius.circular(50.0)),
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(50.0)),
                                     border: Border.all(
                                       color: Colors.deepPurple,
                                       width: 4.0,
@@ -381,17 +457,23 @@ class _CategoryState extends State<Category> {
                             ),
                           ),
                         ),
-                        Text("전산전자", style: TextStyle(fontWeight: FontWeight.bold),),
+                        Text(
+                          "전산전자",
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
                       ],
                     ),
-                    SizedBox(width: 25,),
+                    SizedBox(
+                      width: 25,
+                    ),
                     Column(
                       children: [
                         SizedBox.fromSize(
                           size: Size(60, 60), // button width and height
                           child: ClipOval(
                             child: Material(
-                              child: InkWell(// splash color
+                              child: InkWell(
+                                // splash color
                                 onTap: () {
                                   print("상담심리 button");
                                 }, // button pressed
@@ -404,7 +486,8 @@ class _CategoryState extends State<Category> {
                                       image: AssetImage('counsel.png'),
                                       fit: BoxFit.cover,
                                     ),
-                                    borderRadius: BorderRadius.all( Radius.circular(50.0)),
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(50.0)),
                                     border: Border.all(
                                       color: Colors.deepPurple,
                                       width: 4.0,
@@ -415,17 +498,23 @@ class _CategoryState extends State<Category> {
                             ),
                           ),
                         ),
-                        Text("상담심리", style: TextStyle(fontWeight: FontWeight.bold),),
+                        Text(
+                          "상담심리",
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
                       ],
                     ),
-                    SizedBox(width: 25,),
+                    SizedBox(
+                      width: 25,
+                    ),
                     Column(
                       children: [
                         SizedBox.fromSize(
                           size: Size(60, 60), // button width and height
                           child: ClipOval(
                             child: Material(
-                              child: InkWell(// splash color
+                              child: InkWell(
+                                // splash color
                                 onTap: () {
                                   print("ICT창업 button");
                                 }, // button pressed
@@ -438,7 +527,8 @@ class _CategoryState extends State<Category> {
                                       image: AssetImage('enterpreneur.png'),
                                       fit: BoxFit.cover,
                                     ),
-                                    borderRadius: BorderRadius.all( Radius.circular(50.0)),
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(50.0)),
                                     border: Border.all(
                                       color: Colors.deepPurple,
                                       width: 4.0,
@@ -449,17 +539,23 @@ class _CategoryState extends State<Category> {
                             ),
                           ),
                         ),
-                        Text("ICT창업", style: TextStyle(fontWeight: FontWeight.bold),),
+                        Text(
+                          "ICT창업",
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
                       ],
                     ),
-                    SizedBox(width: 25,),
+                    SizedBox(
+                      width: 25,
+                    ),
                     Column(
                       children: [
                         SizedBox.fromSize(
                           size: Size(60, 60), // button width and height
                           child: ClipOval(
                             child: Material(
-                              child: InkWell(// splash color
+                              child: InkWell(
+                                // splash color
                                 onTap: () {
                                   print("기타 button");
                                 }, // button pressed
@@ -472,7 +568,8 @@ class _CategoryState extends State<Category> {
                                       image: AssetImage('etc.png'),
                                       fit: BoxFit.cover,
                                     ),
-                                    borderRadius: BorderRadius.all( Radius.circular(50.0)),
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(50.0)),
                                     border: Border.all(
                                       color: Colors.deepPurple,
                                       width: 4.0,
@@ -483,10 +580,38 @@ class _CategoryState extends State<Category> {
                             ),
                           ),
                         ),
-                        Text("기타", style: TextStyle(fontWeight: FontWeight.bold),),
+                        Text(
+                          "기타",
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
                       ],
                     ),
-                    SizedBox(width: 25,),
+                    SizedBox(
+                      width: 25,
+                    ),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 20.0, right: 10.0),
+                child: Row(
+                  children: [
+                    Container(
+                      padding: EdgeInsets.symmetric(
+                          horizontal: 70.0, vertical: 50.0),
+                      child: OutlinedButton(
+                          style: OutlinedButton.styleFrom(
+                            side: BorderSide(
+                                width: 2.0, color: Colors.deepPurple),
+                          ),
+                          child: Text(
+                            '질문왕 & 답변왕 랭킹',
+                            style: TextStyle(fontSize: 17, color: Colors.black),
+                          ),
+                          onPressed: () async {
+                            Navigator.pushNamed(context, '/chart');
+                          }),
+                    ),
                   ],
                 ),
               ),

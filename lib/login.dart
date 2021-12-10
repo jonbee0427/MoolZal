@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -71,12 +72,29 @@ class _LoginPageState extends State<LoginPage> {
             Column(
               children: <Widget>[
                 Container(
-                    width: 200,
-                    height: 200,
-                    child: Image.asset(
-                      'moolzal.png',
-                      fit: BoxFit.fill,
-                    )),
+                  width: 200,
+                  height: 200,
+                  child: Image.asset(
+                    'moolzal.png',
+                    fit: BoxFit.fill,
+                  ),
+                ),
+                AnimatedTextKit(
+                  animatedTexts: [
+                    WavyAnimatedText(
+                      '물어보길 잘했다',
+                      textStyle: TextStyle(
+                        fontSize: 20.0,
+                        color: Colors.deepPurple,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                  isRepeatingAnimation: true,
+                  onTap: () {
+                    print("Tap Event");
+                  },
+                ),
               ],
             ),
             const SizedBox(height: 150.0),

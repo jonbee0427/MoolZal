@@ -57,13 +57,13 @@ class _GridTileforPostState extends State<GridTileforPost> {
             context,
             MaterialPageRoute(
                 builder: (context) => PostDetail(
-                      writer: widget.writer,
-                      writer_uid: widget.writer_uid,
-                      title: widget.title,
-                      body: widget.body,
-                      time: widget.time,
-                      postId: widget.postId,
-                    )));
+                  writer: widget.writer,
+                  writer_uid: widget.writer_uid,
+                  title: widget.title,
+                  body: widget.body,
+                  time: widget.time,
+                  postId: widget.postId,
+                )));
       },
       child: Card(
         clipBehavior: Clip.antiAlias,
@@ -90,7 +90,7 @@ class _GridTileforPostState extends State<GridTileforPost> {
                     Text(
                       widget.title,
                       style:
-                          TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                      TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                       maxLines: 1,
                     ),
                     Text(

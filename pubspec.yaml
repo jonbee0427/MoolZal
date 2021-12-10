@@ -25,6 +25,10 @@ dependencies:
   firebase_storage: ^10.1.0
   intl: ^0.17.0
   google_ml_kit: ^0.7.3
+  animated_text_kit: ^4.2.1
+  flutter_webrtc: ^0.8.0
+  flutter_background: ^1.1.0
+  syncfusion_flutter_charts: ^19.3.57
 
 dev_dependencies:
   flutter_test:
