@@ -96,7 +96,16 @@ class _ChatPageState extends State<ChatPage> {
               alignment: Alignment.bottomCenter,
               child: Container(
                 decoration: BoxDecoration(
-                  border: Border.all(width: 2, color: Colors.deepPurple),
+                  //border: Border.all(width: 2, color: Colors.deepPurple),
+                  borderRadius: BorderRadius.circular(5),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.5),
+                      spreadRadius: 3,
+                      blurRadius: 5,
+                      offset: Offset(0, 3), // changes position of shadow
+                    ),
+                  ],
                   color: Colors.white,
                 ),
                 padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 10.0),
