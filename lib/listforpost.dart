@@ -30,7 +30,7 @@ class _ListTileforPostState extends State<ListTileforPost> {
     super.initState();
   }
 
-  String ? url;
+  String? url;
 
   imageFromStorage() {
     String path = '${widget.writer}/' + '${widget.title}/';
@@ -40,7 +40,7 @@ class _ListTileforPostState extends State<ListTileforPost> {
       value.items.forEach((element) {
         element.getDownloadURL().then((value) {
           print('Current value  : ' + value);
-          if(mounted) {
+          if (mounted) {
             setState(() {
               url = value;
             });
@@ -57,14 +57,14 @@ class _ListTileforPostState extends State<ListTileforPost> {
         Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (context) =>
-                    PostDetail(
+                builder: (context) => PostDetail(
                       writer: widget.writer,
                       writer_uid: widget.writer_uid,
                       title: widget.title,
                       body: widget.body,
                       time: widget.time,
-                      postId: widget.postId,)));
+                      postId: widget.postId,
+                    )));
       },
       child: Column(
         children: [
@@ -83,11 +83,8 @@ class _ListTileforPostState extends State<ListTileforPost> {
                               child: Container(
                                 constraints: BoxConstraints(
                                     maxWidth:
-                                    MediaQuery
-                                        .of(context)
-                                        .size
-                                        .width *
-                                        0.6),
+                                        MediaQuery.of(context).size.width *
+                                            0.6),
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
@@ -100,37 +97,53 @@ class _ListTileforPostState extends State<ListTileforPost> {
                                     ),
                                     Text(
                                       widget.body,
-                                      style:
-                                      TextStyle(
+                                      style: TextStyle(
                                           color: Colors.grey, fontSize: 14),
                                       overflow: TextOverflow.ellipsis,
                                     ),
-                                    Text(widget.time, style:
-                                    TextStyle(
-                                        color: Colors.grey, fontSize: 14),),
+                                    Text(
+                                      widget.time,
+                                      style: TextStyle(
+                                          color: Colors.grey, fontSize: 14),
+                                    ),
                                   ],
                                 ),
                               ),
                             ),
-                            url != null ?
-                            Expanded(
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: [
-                                  Container(
-                                    margin: EdgeInsets.only(right: 10),
-                                    height: 50,
-                                    width: 50,
-                                    decoration: BoxDecoration(
-                                      // borderRadius:
-                                      // BorderRadius.all(Radius.circular(10.0)),
-                                      //border: Border.all(color: Colors.grey),
-                                        image: DecorationImage(
-                                            image: NetworkImage(url!))),
+                            url != null
+                                ? Expanded(
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.end,
+                                      children: [
+                                        Container(
+                                          margin: EdgeInsets.only(right: 10),
+                                          height: 50,
+                                          width: 50,
+                                          decoration: BoxDecoration(
+                                              // borderRadius:
+                                              // BorderRadius.all(Radius.circular(10.0)),
+                                              //border: Border.all(color: Colors.grey),
+                                              image: DecorationImage(
+                                                  image: NetworkImage(url!))),
+                                        )
+                                      ],
+                                    ),
                                   )
-                                ],
-                              ),
-                            ) : Container(),
+                                : Expanded(
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.end,
+                                      children: [
+                                        Container(
+                                          margin: EdgeInsets.only(right: 10),
+                                          height: 50,
+                                          width: 50,
+                                          child: Image.asset("moolzal.png",
+                                              fit: BoxFit.fill),
+                                        )
+                                      ],
+                                    ),
+                                  )
+
                             // Expanded(
                             //   child: Row(
                             //     mainAxisAlignment: MainAxisAlignment.end,
@@ -143,7 +156,6 @@ class _ListTileforPostState extends State<ListTileforPost> {
                             // ),
                           ],
                         ),
-
                         Divider(
                           thickness: 1,
                           color: Colors.grey,
