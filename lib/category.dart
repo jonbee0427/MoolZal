@@ -609,7 +609,7 @@ class _CategoryState extends State<Category> {
                             style: TextStyle(fontSize: 17, color: Colors.black),
                           ),
                           onPressed: () async {
-                            print('ranking!');
+                            Navigator.pushNamed(context, '/chart');
                           }),
                     ),
                   ],

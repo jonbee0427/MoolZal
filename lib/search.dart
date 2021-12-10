@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:moolzal/postdetail.dart';
 
 class search extends StatefulWidget {
   @override
@@ -16,6 +17,9 @@ class _searchState extends State<search> {
   final String check = "0";
   final String fnTime = "time";
   final String fnWriter = "writer";
+
+  String ? url;
+
 
   @override
   Widget build(BuildContext context) {
@@ -50,44 +54,115 @@ class _searchState extends State<search> {
           return (snapshot.connectionState == ConnectionState.waiting)
               ? Center(child: CircularProgressIndicator())
               : ListView(
+
             children: snapshot.data!.docs.where((a) => a['title'].contains(name))
                 .map((DocumentSnapshot document) {
               //Timestamp ts = document[fnDatetime];
-              return Card(
-                elevation: 2,
-                child:
-                Container(
-                  padding: const EdgeInsets.all(8),
-                  child: Column(
-                    children: <Widget>[
-                      Row(
-                        mainAxisAlignment:MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          Text(
-                            document[fnTitle],
-                            style: TextStyle(
-                              color: Colors.blueGrey,
-                              fontSize: 17,
-                              fontWeight: FontWeight.bold,
+              return GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              PostDetail(
+                                writer: document['writer'],
+                                writer_uid: document['writer_uid'],
+                                title: document['title'],
+                                body: document['body'],
+                                time: document['time'],
+                                postId: document['postId'],)));
+                },
+                child: Column(
+                  children: [
+                    Container(
+                      child: ListTile(
+                        title: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Row(
+                                    children: [
+                                      Container(
+                                        child: Container(
+                                          constraints: BoxConstraints(
+                                              maxWidth:
+                                              MediaQuery
+                                                  .of(context)
+                                                  .size
+                                                  .width *
+                                                  0.6),
+                                          child: Column(
+                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                document['title'],
+                                                style: TextStyle(
+                                                    fontSize: 18,
+                                                    fontWeight: FontWeight.bold),
+                                                overflow: TextOverflow.ellipsis,
+                                              ),
+                                              Text(
+                                                document['body'],
+                                                style:
+                                                TextStyle(
+                                                    color: Colors.grey, fontSize: 14),
+                                                overflow: TextOverflow.ellipsis,
+                                              ),
+                                              Text(document['time'], style:
+                                              TextStyle(
+                                                  color: Colors.grey, fontSize: 14),),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+
+                                      url != null ?
+                                      Expanded(
+                                        child: Row(
+                                          mainAxisAlignment: MainAxisAlignment.end,
+                                          children: [
+                                            Container(
+                                              margin: EdgeInsets.only(right: 10),
+                                              height: 50,
+                                              width: 50,
+                                              decoration: BoxDecoration(
+                                                // borderRadius:
+                                                // BorderRadius.all(Radius.circular(10.0)),
+                                                //border: Border.all(color: Colors.grey),
+                                                  image: DecorationImage(
+                                                      image: NetworkImage(url!))),
+                                            )
+                                          ],
+                                        ),
+                                      ) : Container(),
+                                      // Expanded(
+                                      //   child: Row(
+                                      //     mainAxisAlignment: MainAxisAlignment.end,
+                                      //     children: [
+                                      //       Container(
+                                      //         child: Text(widget.time, ),
+                                      //       )
+                                      //     ],
+                                      //   ),
+                                      // ),
+                                    ],
+                                  ),
+
+                                  Divider(
+                                    thickness: 1,
+                                    color: Colors.grey,
+                                  ),
+                                ],
+                              ),
                             ),
-                          ),
-                          Text(
-                            //데이터 베이스에 게시글이 작성된 시간을 받아서 넣을것
-                            document[fnTime],
-                            style:
-                            TextStyle(color: Colors.grey[600]),
-                          ),
-                        ],
-                      ),
-                      Container(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          document[fnBody],
-                          style: TextStyle(color: Colors.black54),
+                          ],
                         ),
-                      )
-                    ],
-                  ),
+                      ),
+                    ),
+                  ],
                 ),
               );
             }).toList(),
