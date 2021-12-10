@@ -72,6 +72,7 @@ class _GridTileforPostState extends State<GridTileforPost> {
           borderRadius: BorderRadius.circular(10),
         ),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
             url != null
                 ? AspectRatio(
@@ -80,38 +81,40 @@ class _GridTileforPostState extends State<GridTileforPost> {
                 : AspectRatio(
                 aspectRatio: 16 / 9,
                 child: Image.asset("moolzal.png", fit: BoxFit.fill)),
-            Align(
-              alignment: Alignment.topLeft,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      widget.title,
-                      style:
-                      TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
-                      maxLines: 1,
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                children: [
+                  Align(
+                    alignment: Alignment.topLeft,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          widget.title,
+                          style:
+                          TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                          maxLines: 1,
+                        ),
+                        Text(
+                          widget.body,
+                          style: TextStyle(fontSize: 15),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ],
                     ),
-                    Text(
-                      widget.body,
-                      style: TextStyle(fontSize: 15),
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                  ],
-                ),
+                  ),
+                  SizedBox(height: MediaQuery.of(context).size.width*0.03,),
+                  Align(
+                      alignment: Alignment.bottomRight,
+                      child: Text(
+                        widget.time,
+                        style: TextStyle(fontSize: 12),
+                      )),
+                ],
               ),
             ),
-            Align(
-                alignment: Alignment.centerRight,
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    widget.time,
-                    style: TextStyle(fontSize: 12),
-                  ),
-                )),
           ],
         ),
       ),

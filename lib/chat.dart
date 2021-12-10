@@ -78,6 +78,7 @@ class _ChatPageState extends State<ChatPage> {
       appBar: AppBar(
         centerTitle: true,
         title: Text(widget.title),
+        backgroundColor: Colors.deepPurple,
         actions: <Widget>[
           IconButton(
               onPressed: () {
@@ -95,7 +96,7 @@ class _ChatPageState extends State<ChatPage> {
               alignment: Alignment.bottomCenter,
               child: Container(
                 decoration: BoxDecoration(
-                  border: Border.all(width: 1, color: Colors.black),
+                  border: Border.all(width: 2, color: Colors.deepPurple),
                   color: Colors.white,
                 ),
                 padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 10.0),
