@@ -98,7 +98,6 @@ class _HomeState extends State<Home> {
       appBar: AppBar(
         centerTitle: true,
         title: Text('MoolZal'),
-        automaticallyImplyLeading: false,
         backgroundColor: Colors.deepPurple,
         actions: <Widget>[
           IconButton(

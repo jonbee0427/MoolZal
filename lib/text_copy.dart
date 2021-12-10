@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class CopyPage extends StatefulWidget {
   final String text;
@@ -15,10 +16,17 @@ class _CopyPageState extends State<CopyPage> {
     return Scaffold(
         appBar: AppBar(
           title: const Text('Text Detail'),
+          backgroundColor: Colors.deepPurple,
           centerTitle: true,
           actions: [
             IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  widget.text.isEmpty ? ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("저장할 텍스트가 없습니다!"))) :
+                  Clipboard.setData(new ClipboardData(text: widget.text)).then((_){
+                    ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(content:Text("텍스트 저장!")));
+                  });
+                },
                 icon: Icon(Icons.copy))
           ],
         ),
@@ -28,7 +36,7 @@ class _CopyPageState extends State<CopyPage> {
               height: double.infinity,
               width: double.infinity,
               padding: EdgeInsets.all(10.0),
-              child: SelectableText(widget.text.isEmpty ? 'No Text Found' : widget.text),
+              child: widget.text.isEmpty ? Text('NO TEXT FOUND', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)) : SelectableText(widget.text, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20))
             )));
   }
 }

@@ -67,7 +67,7 @@ class MessageTile extends StatelessWidget {
                             topRight: Radius.circular(23),
                             bottomLeft: Radius.circular(23),
                           ),
-                          color: Colors.blue,
+                          color: Colors.deepPurple,
                           border:
                               Border.all(color: Color.fromARGB(10, 0, 0, 0))),
                       //메세지 내용 출력

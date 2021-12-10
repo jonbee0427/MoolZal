@@ -51,6 +51,7 @@ class _ResultPageState extends State<ResultPage> {
     return Scaffold(
         appBar: AppBar(
           title: const Text('Text Recognition'),
+          backgroundColor: Colors.deepPurple,
           centerTitle: true,
           actions: [
             IconButton(
