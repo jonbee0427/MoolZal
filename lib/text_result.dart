@@ -30,7 +30,11 @@ class _ResultPageState extends State<ResultPage> {
   }
 
   Future getText(File file) async {
-    showDialog(context: this.context, builder: (context) {return SizedBox(child: Center(child:CircularProgressIndicator()));});
+    showDialog(
+        context: this.context,
+        builder: (context) {
+          return SizedBox(child: Center(child: CircularProgressIndicator()));
+        });
     final inputImage = InputImage.fromFile(file);
     final textDetector = GoogleMlKit.vision.textDetector();
     final RecognisedText recognisedText =
@@ -56,7 +60,9 @@ class _ResultPageState extends State<ResultPage> {
           centerTitle: true,
           actions: [
             IconButton(
-                onPressed: () {_fileFromImageUrl(widget.path);},
+                onPressed: () {
+                  _fileFromImageUrl(widget.path);
+                },
                 icon: Icon(Icons.text_format))
           ],
         ),
