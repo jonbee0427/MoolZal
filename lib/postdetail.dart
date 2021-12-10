@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:moolzal/text_result.dart';
 import 'package:moolzal/update.dart';
 import 'package:moolzal/chat.dart';
 
@@ -169,12 +170,10 @@ class _PostDetailState extends State<PostDetail> {
                     itemBuilder: (BuildContext context, int index) {
                       return GestureDetector(
                         onTap: () {
-                          // Navigator.push(
-                          //     context,
-                          //     MaterialPageRoute(
-                          //         builder: (context) => FullScreenPage(
-                          //               Url: imageList[index],
-                          //             )));
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (_) => ResultPage(path: images[index])));
                         },
                         child: Container(
                           margin: EdgeInsets.only(right: 10),
