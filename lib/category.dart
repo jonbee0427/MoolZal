@@ -44,7 +44,7 @@ class _CategoryState extends State<Category> {
                             padding: const EdgeInsets.only(right: 10.0),
                             child: IconButton(
                                 onPressed: () {
-                                  print("Search Button");
+                                  Navigator.pushNamed(context, '/search');
                                 },
                                 icon: Icon(
                                   Icons.search,
@@ -573,7 +573,6 @@ class _CategoryState extends State<Category> {
                       ),
                     ],
                   ),
-
               ),
             ]),
       ),
