@@ -47,6 +47,7 @@ class _chartState extends State<chart> {
       return Scaffold(
           appBar: AppBar(
             title: const Text('질문왕 랭킹'),
+            backgroundColor: Colors.deepPurple,
           ),
           body: StreamBuilder<QuerySnapshot>(
               stream: FirebaseFirestore.instance

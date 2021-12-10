@@ -17,8 +17,8 @@ class _mycommentState extends State<mycomment> {
 
   Widget gridviewforPost = new StreamBuilder<QuerySnapshot>(
       stream: FirebaseFirestore.instance
-          .collection('posts')
-          .where("writer", isEqualTo:FirebaseAuth.instance.currentUser!.displayName.toString())
+          .collection('comments')
+          .where("comment_writer", isEqualTo:FirebaseAuth.instance.currentUser!.displayName.toString())
           .snapshots(),
       builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
         if (snapshot.hasError) {
@@ -45,7 +45,7 @@ class _mycommentState extends State<mycomment> {
                     writer: itemImages[index]['writer'],
                     writer_uid: itemImages[index]['writer_uid'],
                     title: itemImages[index]['title'],
-                    body: itemImages[index]['body'],
+                    body: itemImages[index]['comment'],
                     time: itemImages[index]['time'],
                     postId: itemImages[index]['postId'],
                   );
@@ -59,8 +59,8 @@ class _mycommentState extends State<mycomment> {
 
   Widget listviewforPost = new StreamBuilder<QuerySnapshot>(
       stream: FirebaseFirestore.instance
-          .collection('posts')
-          .where("writer", isEqualTo:FirebaseAuth.instance.currentUser!.displayName.toString())
+          .collection('comments')
+          .where("comment_writer", isEqualTo:FirebaseAuth.instance.currentUser!.displayName.toString())
           .snapshots(),
       builder: (context, snapshot) {
         if (snapshot.hasError) {
@@ -85,7 +85,7 @@ class _mycommentState extends State<mycomment> {
                     writer: itemImages[index]['writer'],
                     writer_uid: itemImages[index]['writer_uid'],
                     title: itemImages[index]['title'],
-                    body: itemImages[index]['body'],
+                    body: itemImages[index]['comment'],
                     time: itemImages[index]['time'],
                     postId: itemImages[index]['postId'],
                   );

@@ -34,7 +34,8 @@ class _searchState extends State<search> {
         title: Card(
           child: TextField(
             decoration: InputDecoration(
-                prefixIcon: Icon(Icons.search), hintText: 'Search...'),
+                prefixIcon: Icon(Icons.search), hintText: 'Search...',),
+
             onChanged: (val) {
               setState(() {
                 name = val;
@@ -42,6 +43,7 @@ class _searchState extends State<search> {
             },
           ),
         ),
+        backgroundColor: Colors.deepPurple,
       ),
       body: StreamBuilder<QuerySnapshot>(
         stream: (name != "" && name != null)
