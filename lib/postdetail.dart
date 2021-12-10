@@ -140,7 +140,7 @@ class _PostDetailState extends State<PostDetail> {
                 padding: const EdgeInsets.only(
                     top: 15, left: 15, right: 15, bottom: 15),
                 decoration: BoxDecoration(
-                  border: Border.all(color: Colors.grey, width: 3),
+                  border: Border.all(color: Colors.deepPurple, width: 3),
                   borderRadius: BorderRadius.all(
                     Radius.circular(40),
                   ),
@@ -183,7 +183,7 @@ class _PostDetailState extends State<PostDetail> {
                           decoration: BoxDecoration(
                               borderRadius:
                                   BorderRadius.all(Radius.circular(10.0)),
-                              border: Border.all(color: Colors.grey),
+                              border: Border.all(color: Colors.deepPurple),
                               image: DecorationImage(
                                   image: NetworkImage(images[index]))),
                         ),
@@ -208,7 +208,7 @@ class _PostDetailState extends State<PostDetail> {
                               style: TextStyle(
                                   color: Colors.black, fontSize: 16.0)),
                           style: OutlinedButton.styleFrom(
-                            side: BorderSide(width: 2.0, color: Colors.grey),
+                            side: BorderSide(width: 2.0, color: Colors.deepPurple),
                           ),
                           onPressed: () {
                             print('Post updated!');
@@ -233,7 +233,7 @@ class _PostDetailState extends State<PostDetail> {
                               style: TextStyle(
                                   color: Colors.black, fontSize: 16.0)),
                           style: OutlinedButton.styleFrom(
-                            side: BorderSide(width: 2.0, color: Colors.grey),
+                            side: BorderSide(width: 2.0, color: Colors.deepPurple),
                           ),
                           onPressed: () {
                             deletePost();

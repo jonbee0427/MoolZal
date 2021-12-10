@@ -58,7 +58,7 @@ class MessageTile extends StatelessWidget {
                     //채팅 말풍선
                     Container(
                       constraints: BoxConstraints(
-                          maxWidth: MediaQuery.of(context).size.width * 0.60),
+                          maxWidth: MediaQuery.of(context).size.width * 0.50),
                       margin: EdgeInsets.only(left: 5),
                       padding: EdgeInsets.all(7),
                       decoration: BoxDecoration(
@@ -111,7 +111,7 @@ class MessageTile extends StatelessWidget {
                             Container(
                               constraints: BoxConstraints(
                                   maxWidth:
-                                      MediaQuery.of(context).size.width * 0.50),
+                                      MediaQuery.of(context).size.width * 0.40),
                               margin:
                                   EdgeInsets.only(top: 5, left: 5, right: 5),
                               padding: EdgeInsets.all(7),
