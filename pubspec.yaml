@@ -1,0 +1,53 @@
+name: moolzal
+description: A new Flutter application.
+
+
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.12.0 <3.0.0"
+
+dependencies:
+  cached_network_image: ^3.1.0+1
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.2
+  convex_bottom_bar: ^3.0.0
+  firebase_core: ^1.10.0
+  firebase_auth: ^3.2.0
+  cloud_firestore: ^3.1.0
+  google_sign_in: ^5.1.0
+  image_picker: ^0.8.4+1
+  flutter_swiper_null_safety: ^1.0.2
+  firebase_storage: ^10.1.0
+  intl: ^0.17.0
+  google_ml_kit: ^0.7.3
+  animated_text_kit: ^4.2.1
+  agora_rtc_engine: ^4.0.7
+  permission_handler: ^8.1.6
+  syncfusion_flutter_charts: ^19.3.57
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
+  assets:
+    - biology.png
+    - construct.png
+    - counsel.png
+    - csee.png
+    - design.png
+    - economics.png
+    - enterpreneur.png
+    - etc.png
+    - film.png
+    - lang.png
+    - law.png
+    - mechanical.png
+    - moolzal.png
+    - google.png
