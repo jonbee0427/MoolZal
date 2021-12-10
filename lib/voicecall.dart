@@ -1,16 +1,15 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_webrtc/flutter_webrtc.dart';
-import 'dart:core';
+import 'dart:async';
 
-import 'package:flutter/foundation.dart'
-    show debugDefaultTargetPlatformOverride;
-import 'package:flutter_background/flutter_background.dart';
-import 'src/data_channel_sample.dart';
-import 'src/get_display_media_sample.dart';
-import 'src/get_user_media_sample.dart'
-if (dart.library.html) 'src/get_user_media_sample_web.dart';
-import 'src/loopback_sample.dart';
-import 'src/route_item.dart';
+import 'package:agora_rtc_engine/rtc_engine.dart';
+import 'package:agora_rtc_engine/rtc_local_view.dart' as RtcLocalView;
+import 'package:agora_rtc_engine/rtc_remote_view.dart' as RtcRemoteView;
+import 'package:flutter/material.dart';
+import 'package:permission_handler/permission_handler.dart';
+
+/// Define App ID and Token
+const APP_ID = '03a39681b2b641a3b6dd02b36d252b0c';
+const Token =
+    '00603a39681b2b641a3b6dd02b36d252b0cIADD+kX9uRx2C/yRfdMNKqm6yPqOwT/EELKLL5HwPUN5tu+GHZwAAAAAEAAUEHcd0K2wYQEAAQDQrbBh';
 
 class VoiceCall extends StatefulWidget {
   @override
@@ -18,100 +17,90 @@ class VoiceCall extends StatefulWidget {
 }
 
 class _VoiceCallState extends State<VoiceCall> {
-  late List<RouteItem> items;
+  int? _remoteUid;
+  late RtcEngine _engine;
 
   @override
   void initState() {
     super.initState();
-    initiate();
-    _initItems();
+    initAgora();
   }
 
-  initiate() {
-    if (WebRTC.platformIsDesktop) {
-      debugDefaultTargetPlatformOverride = TargetPlatform.fuchsia;
-    } else if (WebRTC.platformIsAndroid) {
-      WidgetsFlutterBinding.ensureInitialized();
-      startForegroundService();
-    }
-  }
+  Future<void> initAgora() async {
+    // retrieve permissions
+    await [Permission.microphone, Permission.camera].request();
 
-  ListBody _buildRow(context, item) {
-    return ListBody(children: <Widget>[
-      ListTile(
-        title: Text(item.title),
-        onTap: () => item.push(context),
-        trailing: Icon(Icons.arrow_right),
+    //create the engine
+    _engine = await RtcEngine.create(APP_ID);
+    await _engine.enableVideo();
+    _engine.setEventHandler(
+      RtcEngineEventHandler(
+        joinChannelSuccess: (String channel, int uid, int elapsed) {
+          print("local user $uid joined");
+        },
+        userJoined: (int uid, int elapsed) {
+          print("remote user $uid joined");
+          setState(() {
+            _remoteUid = uid;
+          });
+        },
+        userOffline: (int uid, UserOfflineReason reason) {
+          print("remote user $uid left channel");
+          setState(() {
+            _remoteUid = null;
+          });
+        },
       ),
-      Divider()
-    ]);
-  }
-
-  Future<bool> startForegroundService() async {
-    final androidConfig = FlutterBackgroundAndroidConfig(
-      notificationTitle: 'Title of the notification',
-      notificationText: 'Text of the notification',
-      notificationImportance: AndroidNotificationImportance.Default,
-      notificationIcon: AndroidResource(
-          name: 'background_icon',
-          defType: 'drawable'), // Default is ic_launcher from folder mipmap
     );
-    await FlutterBackground.initialize(androidConfig: androidConfig);
-    return FlutterBackground.enableBackgroundExecution();
+
+    await _engine.joinChannel(Token, "moolzal_channel", null, 0);
   }
 
+  // Create UI with local view and remote view
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-          appBar: AppBar(
-            title: Text('Flutter-WebRTC example'),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Agora Video Call'),
+          automaticallyImplyLeading: false,
+        actions: <Widget>[
+          IconButton(
+              onPressed: () {
+                _engine.leaveChannel();
+                Navigator.pop(context);
+              },
+              icon: Icon(Icons.exit_to_app)),
+        ],
+      ),
+      body: Stack(
+        children: [
+          Center(
+            child: _remoteVideo(),
           ),
-          body: ListView.builder(
-              shrinkWrap: true,
-              padding: const EdgeInsets.all(0.0),
-              itemCount: items.length,
-              itemBuilder: (context, i) {
-                return _buildRow(context, items[i]);
-              })),
+          Align(
+            alignment: Alignment.topCenter,
+            child: Container(
+              width: 200,
+              height: 200,
+              child: Center(
+                child: RtcLocalView.SurfaceView(),
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 
-  void _initItems() {
-    items = <RouteItem>[
-      RouteItem(
-          title: 'GetUserMedia',
-          push: (BuildContext context) {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (BuildContext context) => GetUserMediaSample()));
-          }),
-      RouteItem(
-          title: 'GetDisplayMedia',
-          push: (BuildContext context) {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (BuildContext context) =>
-                        GetDisplayMediaSample()));
-          }),
-      RouteItem(
-          title: 'LoopBack Sample',
-          push: (BuildContext context) {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (BuildContext context) => LoopBackSample()));
-          }),
-      RouteItem(
-          title: 'DataChannel',
-          push: (BuildContext context) {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (BuildContext context) => DataChannelSample()));
-          }),
-    ];
+  // Display remote user's video
+  Widget _remoteVideo() {
+    if (_remoteUid != null) {
+      return RtcRemoteView.SurfaceView(uid: _remoteUid!);
+    } else {
+      return Text(
+        'Please wait for remote user to join',
+        textAlign: TextAlign.center,
+      );
+    }
   }
 }

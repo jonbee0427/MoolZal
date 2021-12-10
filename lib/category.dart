@@ -87,8 +87,8 @@ class _CategoryState extends State<Category> {
                                   Navigator.pushNamed(context, '/layout');
                                 }, // button pressed
                                 child: Container(
-                                  width: 60.0,
-                                  height: 60.0,
+                                  width: MediaQuery.of(context).size.width,
+                                  height: MediaQuery.of(context).size.height,
                                   decoration: BoxDecoration(
                                     //color: const Color(0xff7c94b6),
                                     image: DecorationImage(
@@ -128,8 +128,8 @@ class _CategoryState extends State<Category> {
                                   print("경영경제 button");
                                 }, // button pressed
                                 child: Container(
-                                  width: 60.0,
-                                  height: 60.0,
+                                  width: MediaQuery.of(context).size.width,
+                                  height: MediaQuery.of(context).size.height,
                                   decoration: BoxDecoration(
                                     //color: const Color(0xff7c94b6),
                                     image: DecorationImage(
@@ -169,8 +169,8 @@ class _CategoryState extends State<Category> {
                                   print("법 button");
                                 }, // button pressed
                                 child: Container(
-                                  width: 60.0,
-                                  height: 60.0,
+                                  width: MediaQuery.of(context).size.width,
+                                  height: MediaQuery.of(context).size.height,
                                   decoration: BoxDecoration(
                                     //color: const Color(0xff7c94b6),
                                     image: DecorationImage(
@@ -210,8 +210,8 @@ class _CategoryState extends State<Category> {
                                   print("공연영상 button");
                                 }, // button pressed
                                 child: Container(
-                                  width: 60.0,
-                                  height: 60.0,
+                                  width: MediaQuery.of(context).size.width,
+                                  height: MediaQuery.of(context).size.height,
                                   decoration: BoxDecoration(
                                     //color: const Color(0xff7c94b6),
                                     image: DecorationImage(
@@ -262,8 +262,8 @@ class _CategoryState extends State<Category> {
                                   print("공간환경 button");
                                 }, // button pressed
                                 child: Container(
-                                  width: 60.0,
-                                  height: 60.0,
+                                  width: MediaQuery.of(context).size.width,
+                                  height: MediaQuery.of(context).size.height,
                                   decoration: BoxDecoration(
                                     //color: const Color(0xff7c94b6),
                                     image: DecorationImage(
@@ -303,8 +303,8 @@ class _CategoryState extends State<Category> {
                                   print("기계제어 button");
                                 }, // button pressed
                                 child: Container(
-                                  width: 60.0,
-                                  height: 60.0,
+                                  width: MediaQuery.of(context).size.width,
+                                  height: MediaQuery.of(context).size.height,
                                   decoration: BoxDecoration(
                                     //color: const Color(0xff7c94b6),
                                     image: DecorationImage(
@@ -344,8 +344,8 @@ class _CategoryState extends State<Category> {
                                   print("디자인 button");
                                 }, // button pressed
                                 child: Container(
-                                  width: 60.0,
-                                  height: 60.0,
+                                  width: MediaQuery.of(context).size.width,
+                                  height: MediaQuery.of(context).size.height,
                                   decoration: BoxDecoration(
                                     //color: const Color(0xff7c94b6),
                                     image: DecorationImage(
@@ -385,8 +385,8 @@ class _CategoryState extends State<Category> {
                                   print("생명과학 button");
                                 }, // button pressed
                                 child: Container(
-                                  width: 60.0,
-                                  height: 60.0,
+                                  width: MediaQuery.of(context).size.width,
+                                  height: MediaQuery.of(context).size.height,
                                   decoration: BoxDecoration(
                                     //color: const Color(0xff7c94b6),
                                     image: DecorationImage(
@@ -437,8 +437,8 @@ class _CategoryState extends State<Category> {
                                   print("전산전자 button");
                                 }, // button pressed
                                 child: Container(
-                                  width: 60.0,
-                                  height: 60.0,
+                                  width: MediaQuery.of(context).size.width,
+                                  height: MediaQuery.of(context).size.height,
                                   decoration: BoxDecoration(
                                     //color: const Color(0xff7c94b6),
                                     image: DecorationImage(
@@ -478,8 +478,8 @@ class _CategoryState extends State<Category> {
                                   print("상담심리 button");
                                 }, // button pressed
                                 child: Container(
-                                  width: 60.0,
-                                  height: 60.0,
+                                  width: MediaQuery.of(context).size.width,
+                                  height: MediaQuery.of(context).size.height,
                                   decoration: BoxDecoration(
                                     //color: const Color(0xff7c94b6),
                                     image: DecorationImage(
@@ -519,8 +519,8 @@ class _CategoryState extends State<Category> {
                                   print("ICT창업 button");
                                 }, // button pressed
                                 child: Container(
-                                  width: 60.0,
-                                  height: 60.0,
+                                  width: MediaQuery.of(context).size.width,
+                                  height: MediaQuery.of(context).size.height,
                                   decoration: BoxDecoration(
                                     //color: const Color(0xff7c94b6),
                                     image: DecorationImage(
@@ -560,8 +560,8 @@ class _CategoryState extends State<Category> {
                                   print("기타 button");
                                 }, // button pressed
                                 child: Container(
-                                  width: 60.0,
-                                  height: 60.0,
+                                  width: MediaQuery.of(context).size.width,
+                                  height: MediaQuery.of(context).size.height,
                                   decoration: BoxDecoration(
                                     //color: const Color(0xff7c94b6),
                                     image: DecorationImage(
