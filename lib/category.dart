@@ -608,7 +608,7 @@ class _CategoryState extends State<Category> {
                             '질문왕 & 답변왕 랭킹',
                             style: TextStyle(fontSize: 17, color: Colors.black),
                           ),
-                          onPressed: () async {
+                          onPressed: ()  {
                             Navigator.pushNamed(context, '/chart');
                           }),
                     ),

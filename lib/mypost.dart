@@ -18,7 +18,7 @@ class _mypostState extends State<mypost> {
   Widget gridviewforPost = new StreamBuilder<QuerySnapshot>(
       stream: FirebaseFirestore.instance
           .collection('posts')
-          .where("writer", isEqualTo: "박찬영학부생")
+          .where("writer", isEqualTo:FirebaseAuth.instance.currentUser!.displayName.toString())
           .snapshots(),
       builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
         if (snapshot.hasError) {
@@ -60,7 +60,7 @@ class _mypostState extends State<mypost> {
   Widget listviewforPost = new StreamBuilder<QuerySnapshot>(
       stream: FirebaseFirestore.instance
           .collection('posts')
-          .where("writer", isEqualTo: "박찬영학부생")
+          .where("writer", isEqualTo:FirebaseAuth.instance.currentUser!.displayName.toString())
           .snapshots(),
       builder: (context, snapshot) {
         if (snapshot.hasError) {
