@@ -11,12 +11,12 @@ const APP_ID = '03a39681b2b641a3b6dd02b36d252b0c';
 const Token =
     '00603a39681b2b641a3b6dd02b36d252b0cIADD+kX9uRx2C/yRfdMNKqm6yPqOwT/EELKLL5HwPUN5tu+GHZwAAAAAEAAUEHcd0K2wYQEAAQDQrbBh';
 
-class VoiceCall extends StatefulWidget {
+class FaceCall extends StatefulWidget {
   @override
-  _VoiceCallState createState() => _VoiceCallState();
+  _FaceCallState createState() => _FaceCallState();
 }
 
-class _VoiceCallState extends State<VoiceCall> {
+class _FaceCallState extends State<FaceCall> {
   int? _remoteUid;
   late RtcEngine _engine;
 
