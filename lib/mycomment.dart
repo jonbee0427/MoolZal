@@ -111,7 +111,7 @@ class _mycommentState extends State<mycomment> {
         ),
         centerTitle: true,
         automaticallyImplyLeading: false,
-        title: Text('mypost Page'),
+        title: Text('나의 댓글'),
         backgroundColor: Colors.deepPurple,
         actions: <Widget>[
           IconButton(

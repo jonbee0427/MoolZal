@@ -111,7 +111,7 @@ class _myfavoriteState extends State<myfavorite> {
         ),
         centerTitle: true,
         automaticallyImplyLeading: false,
-        title: Text('mypost Page'),
+        title: Text('즐겨찾는 게시글'),
         backgroundColor: Colors.deepPurple,
         actions: <Widget>[
           IconButton(
