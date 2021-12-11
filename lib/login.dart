@@ -98,23 +98,26 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ],
             ),
-            const SizedBox(height: 150.0),
+            SizedBox(height: MediaQuery.of(context).size.height*0.3),
             Padding(
               padding: const EdgeInsets.all(70.0),
-              child: OutlinedButton.icon(
-                icon: Image.asset('google.png', width: 25, height: 25),
-                style: OutlinedButton.styleFrom(
-                  primary: Colors.white,
-                  backgroundColor: const Color.fromARGB(255, 192, 192, 192),
+              child: SizedBox(
+                width: 150,
+                height: 50,
+                child: OutlinedButton.icon(
+                  icon: Image.asset('google.png', width: 30, height: 30),
+                  style: OutlinedButton.styleFrom(
+                    primary: Colors.white,
+                    backgroundColor: Colors.deepPurple[400],
+                  ),
+                  onPressed: () {
+                    signInWithGoogle();
+                    Navigator.pushNamed(context, '/category');
+                  },
+                  label: Text('GOOGLE LOGIN', style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),),
                 ),
-                onPressed: () {
-                  signInWithGoogle();
-                  Navigator.pushNamed(context, '/category');
-                },
-                label: Text('GOOGLE LOGIN'),
               ),
             ),
-            const SizedBox(height: 15.0),
           ],
         ),
       ),
