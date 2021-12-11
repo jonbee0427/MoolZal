@@ -47,8 +47,10 @@ class _HomeState extends State<Home> {
                 });
           }
         }
-        return Container(
-          child: new Text("No posts found."),
+        return Center(
+          child: Container(
+            child: Text("NO POSTS FOUND.", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
+          ),
         );
       });
 
@@ -87,8 +89,10 @@ class _HomeState extends State<Home> {
                 });
           }
         }
-        return Container(
-          child: new Text("No posts found."),
+        return Center(
+          child: Container(
+            child: Text("NO POSTS FOUND.", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
+          ),
         );
       });
 
@@ -124,6 +128,7 @@ class _HomeState extends State<Home> {
         child : Column(
           children: [
             Container(
+              alignment: Alignment.center,
               padding: EdgeInsets.all(20),
               child:DropdownButton(
                 value: _value,

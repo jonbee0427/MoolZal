@@ -52,8 +52,10 @@ class _mycommentState extends State<mycomment> {
                 });
           }
         }
-        return Container(
-          child: new Text("No item images found."),
+        return Center(
+          child: Container(
+            child: Text("NO POSTS FOUND.", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
+          ),
         );
       });
 
@@ -92,8 +94,10 @@ class _mycommentState extends State<mycomment> {
                 });
           }
         }
-        return Container(
-          child: new Text("No posts found."),
+        return Center(
+          child: Container(
+            child: Text("NO POSTS FOUND.", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
+          ),
         );
       });
 
@@ -128,6 +132,7 @@ class _mycommentState extends State<mycomment> {
         child : Column(
           children: [
             Container(
+              alignment: Alignment.center,
               padding: EdgeInsets.all(30),
               child:DropdownButton(
                 value: _value,

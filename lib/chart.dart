@@ -56,6 +56,10 @@ class _chartState extends State<chart> {
                 PostsCount = itemImages.length;
               }
 
+              if (!snapshot.hasData) {
+                return Center(child: Text("NO DATA", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),),);
+              }
+
               if (check == 0) {
                 check = 1;
                 return Center(child: CircularProgressIndicator());
