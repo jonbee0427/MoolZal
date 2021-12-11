@@ -9,7 +9,7 @@ import 'package:moolzal/myfavorite.dart';
 import 'package:moolzal/mypost.dart';
 import 'package:moolzal/search.dart';
 import 'package:moolzal/login.dart';
-import 'package:moolzal/voicecall.dart';
+import 'package:moolzal/facecall.dart';
 import 'package:moolzal/chart.dart';
 
 class MoolZalApp extends StatelessWidget {
@@ -23,7 +23,7 @@ class MoolZalApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'MoolZal',
       home: SplashScreen(),
-      //initialRoute: '/login',
+      initialRoute: '/login',
       onGenerateRoute: _getRoute,
       routes: {
         '/login': (context) => const LoginPage(),
@@ -34,7 +34,7 @@ class MoolZalApp extends StatelessWidget {
         '/mypost': (context) => mypost(),
         '/search': (context) => search(),
         '/layout': (context) => Layout(),
-        '/voicecall': (context) => VoiceCall(),
+        '/voicecall': (context) => FaceCall(),
         '/chart': (context) => chart(),
       },
       theme: ThemeData(

@@ -167,8 +167,6 @@ class _AddPostState extends State<AddPost> {
                         style: TextStyle(fontSize: 17, color: Colors.black),
                       ),
                       onPressed: () async {
-                        // Database(uid: uid)
-                        //     .getDownloadURL(_titleController.text);
                         Database(uid: uid).savePost(_titleController.text,
                             _bodyController.text, path); //게시글 저장
                         if (images.length > 0) {

@@ -129,20 +129,7 @@ class _ListTileforPostState extends State<ListTileforPost> {
                                       ],
                                     ),
                                   )
-                                : Expanded(
-                                    child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.end,
-                                      children: [
-                                        Container(
-                                          margin: EdgeInsets.only(right: 10),
-                                          height: 50,
-                                          width: 50,
-                                          child: Image.asset("moolzal.png",
-                                              fit: BoxFit.fill),
-                                        )
-                                      ],
-                                    ),
-                                  )
+                                : Container()
 
                             // Expanded(
                             //   child: Row(

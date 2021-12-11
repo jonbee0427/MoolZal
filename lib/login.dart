@@ -57,6 +57,7 @@ class _LoginPageState extends State<LoginPage> {
       'photo': photo,
       'email': email,
       'posts': [],
+      'comments': [],
     }).then((value) => print("New User: '$name' Added"));
   }
 

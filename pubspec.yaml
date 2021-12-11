@@ -26,8 +26,8 @@ dependencies:
   intl: ^0.17.0
   google_ml_kit: ^0.7.3
   animated_text_kit: ^4.2.1
-  flutter_webrtc: ^0.8.0
-  flutter_background: ^1.1.0
+  agora_rtc_engine: ^4.0.7
+  permission_handler: ^8.1.6
   syncfusion_flutter_charts: ^19.3.57
 
 dev_dependencies:

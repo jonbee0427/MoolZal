@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:moolzal/login.dart';
 
 class myprofile extends StatelessWidget {
   const myprofile({Key? key}) : super(key: key);
@@ -25,15 +27,13 @@ class myprofile extends StatelessWidget {
         backgroundColor: Colors.deepPurple,
         actions: <Widget>[
           IconButton(
-            icon: const Icon(
-              Icons.search,
-            ),
-            onPressed: () {
-              //Navigator.pop(context);
-              // 서치로 가기?
-              Navigator.pushNamed(context, '/search');
-            },
-          ),
+              onPressed: () {
+                GoogleSignIn().signOut();
+                Navigator.pushAndRemoveUntil(context, MaterialPageRoute(
+                    builder: (BuildContext context) =>
+                        LoginPage()), (route) => false);
+              },
+              icon: Icon(Icons.exit_to_app)),
         ],
       ),
       body: SingleChildScrollView(

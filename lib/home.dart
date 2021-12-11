@@ -48,7 +48,7 @@ class _HomeState extends State<Home> {
           }
         }
         return Container(
-          child: new Text("No item images found."),
+          child: new Text("No posts found."),
         );
       });
 
@@ -101,13 +101,15 @@ class _HomeState extends State<Home> {
         backgroundColor: Colors.deepPurple,
         actions: <Widget>[
           IconButton(
-              onPressed: () {
-                GoogleSignIn().signOut();
-                Navigator.pushAndRemoveUntil(context, MaterialPageRoute(
-                    builder: (BuildContext context) =>
-                        LoginPage()), (route) => false);
-              },
-              icon: Icon(Icons.exit_to_app)),
+            icon: const Icon(
+              Icons.search,
+            ),
+            onPressed: () {
+              //Navigator.pop(context);
+              // 서치로 가기?
+              Navigator.pushNamed(context, '/search');
+            },
+          ),
         ],
       ),
       body: SingleChildScrollView(
