@@ -107,6 +107,7 @@ class _PostDetailState extends State<PostDetail> {
       'comment_writer': currentUserName,
       'title': widget.title,
       'time': formattedDate,
+      'postWriter_uid': widget.writer_uid,
     },).then((value) => print("Comment added!"));
 
     DocumentReference userDocRef = userCollection.doc(currentUid);
