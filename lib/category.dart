@@ -92,6 +92,7 @@ class _CategoryState extends State<Category> {
                                 // splash color
                                 onTap: () {
                                   print("전산전자 button");
+                                  Navigator.pushNamed(context, '/layout');
                                 }, // button pressed
                                 child: Container(
                                   width: 60.0,
