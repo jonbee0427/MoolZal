@@ -113,16 +113,6 @@ class _mycommentState extends State<mycomment> {
         automaticallyImplyLeading: false,
         title: Text('나의 댓글'),
         backgroundColor: Colors.deepPurple,
-        actions: <Widget>[
-          IconButton(
-              onPressed: () {
-                GoogleSignIn().signOut();
-                Navigator.pushAndRemoveUntil(context, MaterialPageRoute(
-                    builder: (BuildContext context) =>
-                        LoginPage()), (route) => false);
-              },
-              icon: Icon(Icons.exit_to_app)),
-        ],
       ),
       body: SingleChildScrollView(
         child : Column(

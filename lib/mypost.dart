@@ -18,11 +18,13 @@ class _mypostState extends State<mypost> {
   Widget gridviewforPost = new StreamBuilder<QuerySnapshot>(
       stream: FirebaseFirestore.instance
           .collection('posts')
-          .where("writer", isEqualTo:FirebaseAuth.instance.currentUser!.displayName.toString())
+          .where("writer",
+              isEqualTo:
+                  FirebaseAuth.instance.currentUser!.displayName.toString())
           .snapshots(),
       builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
         if (snapshot.hasError) {
-          return new Text('Error in receiving trip photos: ${snapshot.error}');
+          return new Text('Error: ${snapshot.error}');
         }
 
         var ImagesCount = 0;
@@ -60,11 +62,13 @@ class _mypostState extends State<mypost> {
   Widget listviewforPost = new StreamBuilder<QuerySnapshot>(
       stream: FirebaseFirestore.instance
           .collection('posts')
-          .where("writer", isEqualTo:FirebaseAuth.instance.currentUser!.displayName.toString())
+          .where("writer",
+              isEqualTo:
+                  FirebaseAuth.instance.currentUser!.displayName.toString())
           .snapshots(),
       builder: (context, snapshot) {
         if (snapshot.hasError) {
-          return new Text('Error in receiving trip photos: ${snapshot.error}');
+          return new Text('Error: ${snapshot.error}');
         }
 
         var PostsCount = 0;
@@ -113,23 +117,13 @@ class _mypostState extends State<mypost> {
         automaticallyImplyLeading: false,
         title: Text('나의 게시글'),
         backgroundColor: Colors.deepPurple,
-        actions: <Widget>[
-          IconButton(
-              onPressed: () {
-                GoogleSignIn().signOut();
-                Navigator.pushAndRemoveUntil(context, MaterialPageRoute(
-                    builder: (BuildContext context) =>
-                        LoginPage()), (route) => false);
-              },
-              icon: Icon(Icons.exit_to_app)),
-        ],
       ),
       body: SingleChildScrollView(
-        child : Column(
+        child: Column(
           children: [
             Container(
               padding: EdgeInsets.all(30),
-              child:DropdownButton(
+              child: DropdownButton(
                 value: _value,
                 items: [
                   DropdownMenuItem(
@@ -141,7 +135,7 @@ class _mypostState extends State<mypost> {
                     value: 2,
                   )
                 ],
-                onChanged: (int ? value) {
+                onChanged: (int? value) {
                   setState(() {
                     _value = value!;
                   });
