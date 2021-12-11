@@ -18,7 +18,7 @@ class _mycommentState extends State<mycomment> {
   Widget gridviewforPost = new StreamBuilder<QuerySnapshot>(
       stream: FirebaseFirestore.instance
           .collection('comments')
-          .where("comment_writer", isEqualTo:FirebaseAuth.instance.currentUser!.displayName.toString())
+          .where("comment_writer", isEqualTo:"이은지학부생")
           .snapshots(),
       builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
         if (snapshot.hasError) {
@@ -42,12 +42,12 @@ class _mycommentState extends State<mycomment> {
                     crossAxisCount: 2),
                 itemBuilder: (BuildContext context, int index) {
                   return GridTileforPost(
-                    writer: itemImages[index]['writer'],
-                    writer_uid: itemImages[index]['writer_uid'],
+                    writer: itemImages[index]['comment_writer'],
+                    writer_uid: itemImages[index]['postWriter_uid'],
                     title: itemImages[index]['title'],
                     body: itemImages[index]['comment'],
                     time: itemImages[index]['time'],
-                    postId: itemImages[index]['postId'],
+                    postId: itemImages[index]['post_uid'],
                   );
                 });
           }
@@ -82,12 +82,12 @@ class _mycommentState extends State<mycomment> {
                 primary: false,
                 itemBuilder: (BuildContext context, int index) {
                   return ListTileforPost(
-                    writer: itemImages[index]['writer'],
-                    writer_uid: itemImages[index]['writer_uid'],
+                    writer: itemImages[index]['comment_writer'],
+                    writer_uid: itemImages[index]['postWriter_uid'],
                     title: itemImages[index]['title'],
                     body: itemImages[index]['comment'],
                     time: itemImages[index]['time'],
-                    postId: itemImages[index]['postId'],
+                    postId: itemImages[index]['post_uid'],
                   );
                 });
           }
@@ -111,7 +111,7 @@ class _mycommentState extends State<mycomment> {
         ),
         centerTitle: true,
         automaticallyImplyLeading: false,
-        title: Text('mypost Page'),
+        title: Text('my comment Page'),
         backgroundColor: Colors.deepPurple,
         actions: <Widget>[
           IconButton(
