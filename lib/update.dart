@@ -61,14 +61,14 @@ class _UpdatePostState extends State<UpdatePost> {
     widget.time = formattedDate;
 
     CollectionReference postCollection =
-        FirebaseFirestore.instance.collection('posts');
+    FirebaseFirestore.instance.collection('posts');
     return postCollection
         .doc(widget.postId)
         .update({
-          'title': widget.title,
-          'body': widget.body,
-          'time': widget.time,
-        })
+      'title': widget.title,
+      'body': widget.body,
+      'time': widget.time,
+    })
         .then((value) => print("Post Updated"))
         .catchError((error) => print("Failed to update user: $error"));
   }
@@ -80,6 +80,7 @@ class _UpdatePostState extends State<UpdatePost> {
         centerTitle: true,
         title: Text('글 수정'),
         automaticallyImplyLeading: false,
+        backgroundColor: Colors.deepPurple,
       ),
       body: SafeArea(
         child: ListView(
@@ -88,12 +89,21 @@ class _UpdatePostState extends State<UpdatePost> {
               children: [
                 Container(
                   padding:
-                      EdgeInsets.symmetric(horizontal: 30.0, vertical: 20.0),
+                  EdgeInsets.symmetric(horizontal: 30.0, vertical: 20.0),
                   child: TextField(
                     cursorColor: Colors.black,
                     decoration: InputDecoration(
-                      border: UnderlineInputBorder(),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(width: 1, color: Colors.deepPurple),
+                      ),
+                      // enabledBorder: OutlineInputBorder(
+                      //   borderSide: BorderSide(width: 1, color: Colors.deepPurple),
+                      // ),
+                      border: UnderlineInputBorder(
+                        borderSide: BorderSide(width: 1, color: Colors.deepPurple),
+                      ),
                       labelText: '제목',
+                      labelStyle: TextStyle(color: Colors.deepPurple),
                     ),
                     controller: _titleController,
                   ),
@@ -106,7 +116,14 @@ class _UpdatePostState extends State<UpdatePost> {
                     cursorColor: Colors.black,
                     decoration: InputDecoration(
                       labelText: '내용',
+                      labelStyle: TextStyle(color: Colors.deepPurple),
                       hintText: widget.body,
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(width: 1, color: Colors.deepPurple),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(width: 1, color: Colors.deepPurple),
+                      ),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(10.0)),
                       ),
@@ -121,11 +138,11 @@ class _UpdatePostState extends State<UpdatePost> {
                   padding: EdgeInsets.symmetric(horizontal: 30.0),
                   child: OutlinedButton(
                       style: OutlinedButton.styleFrom(
-                        side: BorderSide(width: 2.0, color: Colors.grey),
+                        side: BorderSide(width: 2.0, color: Colors.deepPurple),
                       ),
                       child: Text('이미지 업로드',
                           style:
-                              TextStyle(color: Colors.black, fontSize: 16.0)),
+                          TextStyle(color: Colors.black, fontSize: 16.0)),
                       onPressed: () {
                         pickImage();
                         print('image uploaded');
@@ -137,33 +154,33 @@ class _UpdatePostState extends State<UpdatePost> {
                 SizedBox(
                   child: maxImg != 0
                       ? Container(
-                          padding: EdgeInsets.symmetric(horizontal: 30.0),
-                          width: 250,
-                          height: 200,
-                          child: maxImg != 0
-                              ? Swiper(
-                                  key: UniqueKey(),
-                                  itemBuilder:
-                                      (BuildContext context, int index) {
-                                    return Image.file(
-                                      File(images[index]),
-                                    );
-                                  },
-                                  itemCount: images.length,
-                                  autoplayDisableOnInteraction: true,
-                                  pagination: new SwiperPagination(
-                                    alignment: Alignment.bottomCenter,
-                                    builder: new DotSwiperPaginationBuilder(
-                                      color: Colors.grey,
-                                      activeColor: Colors.grey,
-                                    ),
-                                  ),
-                                  control: new SwiperControl(
-                                    color: Colors.grey,
-                                  ),
-                                )
-                              : null,
-                        )
+                    padding: EdgeInsets.symmetric(horizontal: 30.0),
+                    width: 250,
+                    height: 200,
+                    child: maxImg != 0
+                        ? Swiper(
+                      key: UniqueKey(),
+                      itemBuilder:
+                          (BuildContext context, int index) {
+                        return Image.file(
+                          File(images[index]),
+                        );
+                      },
+                      itemCount: images.length,
+                      autoplayDisableOnInteraction: true,
+                      pagination: new SwiperPagination(
+                        alignment: Alignment.bottomCenter,
+                        builder: new DotSwiperPaginationBuilder(
+                          color: Colors.deepPurple,
+                          activeColor: Colors.deepPurple,
+                        ),
+                      ),
+                      control: new SwiperControl(
+                        color: Colors.deepPurple,
+                      ),
+                    )
+                        : null,
+                  )
                       : null,
                 ),
                 SizedBox(
@@ -171,10 +188,10 @@ class _UpdatePostState extends State<UpdatePost> {
                 ),
                 Container(
                   padding:
-                      EdgeInsets.symmetric(horizontal: 30.0, vertical: 30.0),
+                  EdgeInsets.symmetric(horizontal: 30.0, vertical: 30.0),
                   child: OutlinedButton(
                       style: OutlinedButton.styleFrom(
-                        side: BorderSide(width: 2.0, color: Colors.grey),
+                        side: BorderSide(width: 2.0, color: Colors.deepPurple),
                       ),
                       child: Text(
                         '작성 완료',
