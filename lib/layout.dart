@@ -19,8 +19,6 @@ class _LayoutState extends State<Layout> {
     return Scaffold(
       body: _pageOptions[_selected],
       bottomNavigationBar: _selected == 0 || _selected == 1 || _selected == 2
-          // selectedPage == 3 ||
-          // selectedPage == 4
           ? ConvexAppBar(
         backgroundColor: Colors.deepPurple,
               items: [
@@ -30,7 +28,6 @@ class _LayoutState extends State<Layout> {
                 ),
                 TabItem(icon: Icons.add, title: '게시글 추가'),
                 TabItem(icon: Icons.person, title: '마이페이지'),
-                // TabItem(icon: Icons.person, title: '프로필'),
               ],
               onTap: (int i) {
                 setState(() {

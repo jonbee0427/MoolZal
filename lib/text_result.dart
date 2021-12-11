@@ -74,7 +74,7 @@ class _ResultPageState extends State<ResultPage> {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.all(Radius.circular(4.0)),
             image: DecorationImage(
-                fit: BoxFit.cover, image: NetworkImage(widget.path)),
+                fit: BoxFit.fill, image: NetworkImage(widget.path)),
           ),
         )));
   }
