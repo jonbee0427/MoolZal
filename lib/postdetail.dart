@@ -466,11 +466,11 @@ class commentTile extends StatelessWidget {
       trailing: IconButton(
         icon: Icon(Icons.delete_forever),
         onPressed: () {
-          if (uid == writer_uid) {
+       //   if (uid == writer_uid) {
             deleteComment();
             deleteCommentinUser();
             print('Comment deleted!');
-          }
+         // }
         },
       ),
     ) : Container();
