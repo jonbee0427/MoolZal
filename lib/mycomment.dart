@@ -42,12 +42,12 @@ class _mycommentState extends State<mycomment> {
                     crossAxisCount: 2),
                 itemBuilder: (BuildContext context, int index) {
                   return GridTileforPost(
-                    writer: itemImages[index]['writer'],
-                    writer_uid: itemImages[index]['writer_uid'],
+                    writer: itemImages[index]['comment_writer'],
+                    writer_uid: itemImages[index]['postWriter_uid'],
                     title: itemImages[index]['title'],
                     body: itemImages[index]['comment'],
                     time: itemImages[index]['time'],
-                    postId: itemImages[index]['postId'],
+                    postId: itemImages[index]['post_uid'],
                   );
                 });
           }
@@ -82,12 +82,12 @@ class _mycommentState extends State<mycomment> {
                 primary: false,
                 itemBuilder: (BuildContext context, int index) {
                   return ListTileforPost(
-                    writer: itemImages[index]['writer'],
-                    writer_uid: itemImages[index]['writer_uid'],
+                    writer: itemImages[index]['comment_writer'],
+                    writer_uid: itemImages[index]['postWriter_uid'],
                     title: itemImages[index]['title'],
                     body: itemImages[index]['comment'],
                     time: itemImages[index]['time'],
-                    postId: itemImages[index]['postId'],
+                    postId: itemImages[index]['post_uid'],
                   );
                 });
           }
@@ -113,6 +113,16 @@ class _mycommentState extends State<mycomment> {
         automaticallyImplyLeading: false,
         title: Text('나의 댓글'),
         backgroundColor: Colors.deepPurple,
+        actions: <Widget>[
+          IconButton(
+              onPressed: () {
+                GoogleSignIn().signOut();
+                Navigator.pushAndRemoveUntil(context, MaterialPageRoute(
+                    builder: (BuildContext context) =>
+                        LoginPage()), (route) => false);
+              },
+              icon: Icon(Icons.exit_to_app)),
+        ],
       ),
       body: SingleChildScrollView(
         child : Column(
