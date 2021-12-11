@@ -18,7 +18,7 @@ class _mycommentState extends State<mycomment> {
   Widget gridviewforPost = new StreamBuilder<QuerySnapshot>(
       stream: FirebaseFirestore.instance
           .collection('comments')
-          .where("comment_writer", isEqualTo:FirebaseAuth.instance.currentUser!.displayName.toString())
+          .where("comment_writer", isEqualTo: FirebaseAuth.instance.currentUser!.displayName.toString())
           .snapshots(),
       builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
         if (snapshot.hasError) {
@@ -60,7 +60,7 @@ class _mycommentState extends State<mycomment> {
   Widget listviewforPost = new StreamBuilder<QuerySnapshot>(
       stream: FirebaseFirestore.instance
           .collection('comments')
-          .where("comment_writer", isEqualTo:FirebaseAuth.instance.currentUser!.displayName.toString())
+          .where("comment_writer", isEqualTo: FirebaseAuth.instance.currentUser!.displayName.toString())
           .snapshots(),
       builder: (context, snapshot) {
         if (snapshot.hasError) {

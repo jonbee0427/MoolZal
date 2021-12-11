@@ -22,7 +22,7 @@ class myprofile extends StatelessWidget {
             Navigator.pushNamed(context, '/layout');
           },
         ),
-        title: Text('My Profile'),
+        title: Text('마이페이지'),
         centerTitle: true,
         backgroundColor: Colors.deepPurple,
         actions: <Widget>[
