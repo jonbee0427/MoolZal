@@ -63,6 +63,7 @@ class _FaceCallState extends State<FaceCall> {
       appBar: AppBar(
         title: const Text('Face Call'),
         automaticallyImplyLeading: false,
+        backgroundColor: Colors.deepPurple,
         centerTitle: true,
         actions: <Widget>[
           IconButton(
