@@ -99,6 +99,14 @@ class _HomeState extends State<Home> {
         centerTitle: true,
         title: Text('MoolZal'),
         backgroundColor: Colors.deepPurple,
+        leading: IconButton(
+          icon: const Icon(
+            Icons.arrow_back,
+          ),
+          onPressed: () {
+            Navigator.pushNamedAndRemoveUntil(context, '/category', (route) => false);
+          },
+        ),
         actions: <Widget>[
           IconButton(
             icon: const Icon(
