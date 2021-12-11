@@ -37,6 +37,7 @@ class _chartState extends State<chart> {
     return Scaffold(
         appBar: AppBar(
           title: const Text('질문왕 랭킹'),
+          centerTitle: true,
           backgroundColor: Colors.deepPurple,
         ),
         body: StreamBuilder<QuerySnapshot>(
@@ -95,11 +96,12 @@ class _chartState extends State<chart> {
 
               if (check == 12) {
                 return Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     SfCartesianChart(
                         primaryXAxis: CategoryAxis(),
                         primaryYAxis:
-                            NumericAxis(minimum: 0, maximum: 40, interval: 10),
+                            NumericAxis(minimum: 0, maximum: 10, interval: 2),
                         tooltipBehavior: _tooltip,
                         series: <ChartSeries<_ChartData, String>>[
                           ColumnSeries<_ChartData, String>(
@@ -110,7 +112,7 @@ class _chartState extends State<chart> {
                               color: Colors.deepPurple)
                         ]),
                     Container(
-                      child: Text("***질문왕***",
+                      child: Text("---질문왕---",
                           style: TextStyle(
                               color: Colors.black,
                               fontWeight: FontWeight.bold,
