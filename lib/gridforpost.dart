@@ -105,7 +105,7 @@ class _GridTileforPostState extends State<GridTileforPost> {
                       ],
                     ),
                   ),
-                  SizedBox(height: MediaQuery.of(context).size.width*0.03,),
+                  SizedBox(height: MediaQuery.of(context).size.width*0.02,),
                   Align(
                       alignment: Alignment.bottomRight,
                       child: Text(

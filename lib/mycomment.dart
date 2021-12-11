@@ -18,7 +18,7 @@ class _mycommentState extends State<mycomment> {
   Widget gridviewforPost = new StreamBuilder<QuerySnapshot>(
       stream: FirebaseFirestore.instance
           .collection('comments')
-          .where("comment_writer", isEqualTo:"이은지학부생")
+          .where("comment_writer", isEqualTo:FirebaseAuth.instance.currentUser!.displayName.toString())
           .snapshots(),
       builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
         if (snapshot.hasError) {
@@ -111,7 +111,9 @@ class _mycommentState extends State<mycomment> {
         ),
         centerTitle: true,
         automaticallyImplyLeading: false,
+
         title: Text('my comment Page'),
+
         backgroundColor: Colors.deepPurple,
         actions: <Widget>[
           IconButton(

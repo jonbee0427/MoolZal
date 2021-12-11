@@ -30,7 +30,11 @@ class _ResultPageState extends State<ResultPage> {
   }
 
   Future getText(File file) async {
-    // showDialog(context: this.context, builder: (context) {return CircularProgressIndicator();});
+    showDialog(
+        context: this.context,
+        builder: (context) {
+          return SizedBox(child: Center(child: CircularProgressIndicator()));
+        });
     final inputImage = InputImage.fromFile(file);
     final textDetector = GoogleMlKit.vision.textDetector();
     final RecognisedText recognisedText =
@@ -38,12 +42,13 @@ class _ResultPageState extends State<ResultPage> {
     String text = recognisedText.text;
     for (TextBlock block in recognisedText.blocks) {
       for (TextLine line in block.lines) {
-          _text += line.text + '\n';
+        _text += line.text + '\n';
       }
     }
     print(text);
     Navigator.pop(this.context);
-    Navigator.of(this.context).push(MaterialPageRoute(builder: (context) => CopyPage(text: text)));
+    Navigator.of(this.context)
+        .push(MaterialPageRoute(builder: (context) => CopyPage(text: text)));
   }
 
   @override
@@ -55,7 +60,9 @@ class _ResultPageState extends State<ResultPage> {
           centerTitle: true,
           actions: [
             IconButton(
-                onPressed: () => _fileFromImageUrl(widget.path),
+                onPressed: () {
+                  _fileFromImageUrl(widget.path);
+                },
                 icon: Icon(Icons.text_format))
           ],
         ),
