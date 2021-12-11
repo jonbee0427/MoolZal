@@ -6,7 +6,6 @@ import 'package:moolzal/facecall.dart';
 import 'package:moolzal/layout.dart';
 import 'package:moolzal/myprofile.dart';
 import 'package:moolzal/mycomment.dart';
-import 'package:moolzal/myfavorite.dart';
 import 'package:moolzal/mypost.dart';
 import 'package:moolzal/search.dart';
 import 'package:moolzal/login.dart';
@@ -30,7 +29,6 @@ class MoolZalApp extends StatelessWidget {
         '/category': (context) => Category(),
         '/profile': (context) => myprofile(),
         '/mycomment': (context) => mycomment(),
-        '/myfavorite': (context) => myfavorite(),
         '/mypost': (context) => mypost(),
         '/search': (context) => search(),
         '/layout': (context) => Layout(),

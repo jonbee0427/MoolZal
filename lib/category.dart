@@ -562,7 +562,7 @@ class _CategoryState extends State<Category> {
                         side: BorderSide(width: 2.0, color: Colors.deepPurple),
                       ),
                       child: Text(
-                        '질문왕 & 답변왕 랭킹',
+                        '질문왕 랭킹',
                         style: TextStyle(fontSize: 17, color: Colors.black),
                       ),
                       onPressed: () async {

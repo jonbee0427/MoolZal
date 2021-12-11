@@ -83,22 +83,6 @@ class myprofile extends StatelessWidget {
                   },
                 ),
               ),
-              SizedBox(height: MediaQuery.of(context).size.height*0.05),
-              SizedBox(
-                width: MediaQuery.of(context).size.width*0.8,
-                child: OutlineButton(
-                  child: Text('즐겨찾는 게시글',style: TextStyle(color: Colors.black)),
-                  borderSide: BorderSide(
-                    color: Colors.deepPurple,
-                    style: BorderStyle.solid,
-                    width: 1.8,
-                  ),
-                  onPressed: () {
-                    //즐겨찾는 게시글로 가기
-                    Navigator.pushNamed(context, '/myfavorite');
-                  },
-                ),
-              ),
             ],
           ),
         ),
