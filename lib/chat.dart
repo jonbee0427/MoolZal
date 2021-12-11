@@ -26,7 +26,17 @@ class _ChatPageState extends State<ChatPage> {
 
   @override
   void initState() {
+    addMember();
     super.initState();
+  }
+
+  Future<void> addMember () async {
+    final CollectionReference postCollection =
+    FirebaseFirestore.instance.collection('posts');
+    DocumentReference postRef = postCollection.doc(widget.postId);
+    await postRef.update({
+      'members': FieldValue.arrayUnion([uid + '_' + name]),
+    });
   }
 
   Widget readMessage(String postId) {
