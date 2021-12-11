@@ -69,7 +69,7 @@ class _LoginPageState extends State<LoginPage> {
         child: ListView(
           padding: const EdgeInsets.symmetric(horizontal: 24.0),
           children: <Widget>[
-            const SizedBox(height: 100.0),
+            SizedBox(height: MediaQuery.of(context).size.height*0.1),
             Column(
               children: <Widget>[
                 Container(
@@ -100,10 +100,10 @@ class _LoginPageState extends State<LoginPage> {
             ),
             SizedBox(height: MediaQuery.of(context).size.height*0.3),
             Padding(
-              padding: const EdgeInsets.all(70.0),
+              padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width*0.08),
               child: SizedBox(
-                width: 150,
-                height: 50,
+                width: MediaQuery.of(context).size.width*0.1,
+                height: MediaQuery.of(context).size.height*0.1,
                 child: OutlinedButton.icon(
                   icon: Image.asset('google.png', width: 30, height: 30),
                   style: OutlinedButton.styleFrom(
