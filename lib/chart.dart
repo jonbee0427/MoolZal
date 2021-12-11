@@ -96,7 +96,7 @@ class _chartState extends State<chart> {
 
               if (check == 12) {
                 return Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
                     SfCartesianChart(
                         primaryXAxis: CategoryAxis(),
